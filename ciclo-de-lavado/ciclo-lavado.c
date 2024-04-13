@@ -5,6 +5,9 @@
 #define BUTTON_CICLO 7
 
 int main() {
+
+    stdio_init_all();
+
     const uint LED_SUAVE = 4;
     const uint LED_PESADO = 5;
     const uint LED_RAPIDO = 6;
@@ -24,7 +27,7 @@ int main() {
 
     int ciclo = 2;
     while (1) {
-        if (gpio_get(BUTTON_CICLO) == 0) {
+        if (!gpio_get(BUTTON_CICLO)) {
             ciclo++;
             if (ciclo > 2) {
                 ciclo = 0;
