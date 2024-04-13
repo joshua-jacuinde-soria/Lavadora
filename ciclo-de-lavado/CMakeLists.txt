@@ -1,4 +1,4 @@
-add_executable(Lavadora
+add_executable(ciclo-de-lavado
         ciclo-lavado.c
         )
 
