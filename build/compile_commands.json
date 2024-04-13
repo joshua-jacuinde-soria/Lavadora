@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/gabyh/OneDrive/Documentos/Microcontroladores/Pico-v1.5.1/Lavadora/build",
+  "command": "C:\\PROGRA~1\\RASPBE~1\\PICOSD~1.1\\GCC-AR~1\\bin\\AR19DD~1.EXE -DPICO_BOARD=\\\"pico_w\\\" -DPICO_BUILD=1 -DPICO_NO_HARDWARE=0 -DPICO_ON_DEVICE=1 -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/boot_stage2/asminclude\" -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2040/hardware_regs/include\" -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/hardware_base/include\" -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/common/pico_base/include\" -IC:/Users/gabyh/OneDrive/Documentos/Microcontroladores/Pico-v1.5.1/Lavadora/build/generated/pico_base -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/boards/include\" -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/pico_platform/include\" -I\"C:/Program Files/Raspberry Pi/Pico SDK v1.5.1/pico-sdk/src/rp2_common/boot_stage2/include\" -mcpu=cortex-m0plus -mthumb -Og -g -o pico-sdk\\src\\rp2_common\\boot_stage2\\CMakeFiles\\bs2_default.dir\\compile_time_choice.S.obj   -c \"C:\\Program Files\\Raspberry Pi\\Pico SDK v1.5.1\\pico-sdk\\src\\rp2_common\\boot_stage2\\compile_time_choice.S\"",
+  "file": "C:\\Program Files\\Raspberry Pi\\Pico SDK v1.5.1\\pico-sdk\\src\\rp2_common\\boot_stage2\\compile_time_choice.S"
+}
+]
