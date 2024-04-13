@@ -11,3 +11,8 @@
 .equ BUTTON_CYCLE, 7
 .equ GPIO_OUT, 1
 .equ GPIO_IN, 0
+main:
+    @ Prologue
+    push    {r7, lr}    @ Respaldar apuntador de marco y registro de enlace
+    sub     sp, sp, 8   @ Reservar espacio para variables locales 
+    add     r7, sp      @ Crear apuntador de marco 
