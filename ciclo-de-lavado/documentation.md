@@ -11,3 +11,12 @@ El presente documento describe el funcionamiento de el ciclo de lavado junto con
 |   botón	|   1	|
 |   M/M cables jumper    |   5    |
 
+# Tabla de conexiones
+|   Puerto GPIO	|   Componente	|
+|---	|---	|
+|   4    |   led	|
+|   5	|   led	|
+|   6	|   led	|
+|   7	|   botón	|
+
+ > El botón deberá de ir conectado a gnd
