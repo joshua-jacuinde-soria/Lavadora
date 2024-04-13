@@ -16,3 +16,26 @@ main:
     push    {r7, lr}    @ Respaldar apuntador de marco y registro de enlace
     sub     sp, sp, 8   @ Reservar espacio para variables locales 
     add     r7, sp      @ Crear apuntador de marco 
+    @ stdio_init_all()
+    bl      stdio_init_all
+    @ gpio_init(LED_SUAVE);
+    movs    r0, LED_SUAVE
+    bl      gpio_init
+    @ gpio_init(LED_PESADO);
+    movs    r0, LED_PESADO
+    bl      gpio_init
+    @ gpio_init(LED_RAPIDO);
+    movs    r0, LED_RAPIDO
+    bl      gpio_init
+    @ gpio_set_dir(LED_SUAVE, GPIO_OUT);
+    movs    r1, GPIO_OUT
+    movs    r0, LED_SUAVE
+    bl      gpio_set_dir_wrapper
+    @ gpio_set_dir(LED_PESADO, GPIO_OUT);
+    movs    r1, GPIO_OUT
+    movs    r0, LED_PESADO
+    bl      gpio_set_dir_wrapper
+    @ gpio_set_dir(LED_RAPIDO, GPIO_OUT);
+    movs    r1, GPIO_OUT
+    movs    r0, LED_RAPIDO
+    bl      gpio_set_dir_wrapper
