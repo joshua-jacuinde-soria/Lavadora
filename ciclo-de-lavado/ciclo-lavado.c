@@ -31,22 +31,14 @@ int main() {
             ciclo++;
             if (ciclo > 2) {
                 ciclo = 0;
-                gpio_put(LED_RAPIDO, 0);
-                sleep_ms(250);
-                gpio_put(LED_SUAVE, 1);
-            } else if (ciclo == 1) {
-                gpio_put(LED_SUAVE, 0);
-                sleep_ms(250);
-                gpio_put(LED_PESADO, 1);
-            } else if (ciclo == 2) {
-                gpio_put(LED_PESADO, 0);
-                sleep_ms(250);
-                gpio_put(LED_RAPIDO, 1);
             }
+            gpio_put(LED_SUAVE, ciclo == 0);
+            gpio_put(LED_PESADO, ciclo == 1);
+            gpio_put(LED_RAPIDO, ciclo == 2);
             printf("Boton presionado. Ciclo de lavado: %d\n", ciclo);
         } else {
             printf("Ciclo de lavado: %d\n", ciclo);
         }
-        sleep_ms(1000);
+        sleep_ms(100);
     }
 }
