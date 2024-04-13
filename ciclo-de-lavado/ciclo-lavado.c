@@ -43,8 +43,6 @@ int main() {
             gpio_put(LED_PESADO, ciclo == 1);
             gpio_put(LED_RAPIDO, ciclo == 2);
             printf("Boton presionado. Ciclo de lavado: %d\n", ciclo);
-        } else {
-            printf("Ciclo de lavado: %d\n", ciclo);
         }
         sleep_ms(100);
     }
