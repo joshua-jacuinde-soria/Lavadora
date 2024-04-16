@@ -44,7 +44,7 @@ int main() {
             gpio_put(LED_RAPIDO, ciclo == 2);
             printf("Boton presionado. Ciclo de lavado: %d\n", ciclo);
         }
-        sleep_ms(100);  // Se tiene que testear el tiempo de espera para que no 
+        sleep_ms(150);  // Se tiene que testear el tiempo de espera para que no 
                         //haga saltos de ciclos inesperados
     }
 }
