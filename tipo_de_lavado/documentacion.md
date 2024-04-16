@@ -4,6 +4,8 @@ Este documento tiene como objetivo proporcionar una descripción detallada de la
 
 # Lista de materiales
 
+A continuación se muestran los materiales que son necesarios para poder realizar el proyecto.
+
 |   Material a Usar	|   Cantidad	|
 |---	|---	|
 |    Led	|  3 	|
@@ -12,6 +14,9 @@ Este documento tiene como objetivo proporcionar una descripción detallada de la
 |    Jumpers    |   5    |
 
 # Tabla de conexiones
+
+En la siguiente tabla se muestran las conexiones que se tienen que hacer desde los puertos de la Raspberri Pi Pico W hacia los compenentes que sean requeridos.
+
 |   Puerto GPIO	|   Salida	|
 |---	|---	|
 |   8    |    led (lavado)	|
