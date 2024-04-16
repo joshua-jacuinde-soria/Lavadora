@@ -4,7 +4,7 @@ El presente documento describe el funcionamiento de el ciclo de lavado junto con
 
 # Funcion
 
-'''
+```
 int cicloLavado(int cycleStatus) {
     cycleStatus++;
     if (cycleStatus > 2) {
@@ -16,8 +16,9 @@ int cicloLavado(int cycleStatus) {
 
     return cycleStatus;
 }
-'''
-Esta funcion tiene como argumento 'cycleStatus' un entero que representa el estado del ciclo de lavado, tenemos tres estados/ciclos, estos estados van de 0 a 2 que son:
+```
+
+Esta funcion tiene como argumento `cycleStatus` un entero que representa el estado del ciclo de lavado, tenemos tres estados/ciclos, estos estados van de 0 a 2 que son:
 
 0.   Ciclo Suave
 1.   Ciclo Pesado
@@ -26,15 +27,15 @@ Esta funcion tiene como argumento 'cycleStatus' un entero que representa el esta
 La logica de esta funcion tiene la siguiente estructura:
 
 -   Inicio de funcion:
-    -   Por cada vez que se invoque esta funcion significa que el boton fue presionado, por lo que tenemos que actualizar el estado al siguiente
-    'cycleStatus++'
+    -   Por cada vez que se invoque esta funcion significa que el boton fue presionado, por lo que tenemos que actualizar el estado al si`uiente
+    `cycleStatus++'
 -   Verificar que el estado se encuentre dentro de los limites:
     - Por lo que si al momento de llamar la funcion el estado es 2, tenemos que volver al primer estado.
-    '''
+    ```
     if (cycleStatus > 2) {
     cycleStatus = 0;
     }
-    '''
+    ```
 -   Prender los LEDS asociados al estado correspondiente:
     -   Cada LED le corresponde un ciclo:
 
@@ -45,9 +46,9 @@ La logica de esta funcion tiene la siguiente estructura:
     |   2 - Rapido |   GPIO 6  |
 
     - La logica encargada de este encendido de LEDS de acuerdo al ciclo pudo ser abordado con una estructura if, pero por el uso de buenas practicas se opto por verificar si el estado es igual dentro de la funcion encargada de prender cada led por ejemplo:
-    '''
+    ```
     gpio_put(LED_SUAVE, cycleStatus == 0)
-    '''
+    ```
     - Si el ciclo es cero, la funcion da verdadera y regresa un 1, que para gpio_put significaria que prenda el led, de no ser asi, el led se apaga.
     - Cada led tiene una funcion gpio_put por lo que de esta manera tenemos la logica para el cambio de ciclo
 
