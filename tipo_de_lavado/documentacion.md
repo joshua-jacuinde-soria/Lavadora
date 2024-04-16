@@ -1,4 +1,3 @@
-<center> 
 # Tipo de lavado
 
 Este documento tiene como objetivo proporcionar una descripción detallada de la implementación y funcionalidad de los archivos de programación responsables de controlar los diferentes tipos de lavado en el tablero de  una lavadora. El sistema está diseñado para mostrar graficamente por medio de tres leds y un boton la representacion de las tres operaciones esenciales: lavado, enjuagado y centrifugado.
@@ -19,4 +18,3 @@ Este documento tiene como objetivo proporcionar una descripción detallada de la
 |   9	|   <center> led (enjuagado)	|
 |   10	|   <center> led (centrifugado)	|
 |   11	|   <center> botón	|
-</center>
