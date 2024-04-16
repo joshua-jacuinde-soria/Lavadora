@@ -62,7 +62,7 @@ int reconocer(int numero){
 
 void mostrar( int decenas, int unidades) {
     int cont = 0;
-    while (cont < 100) {
+    while (cont < 1000) {
         int cosa1 = reconocer(decenas);
         int cosa2 = reconocer(unidades);
         int cosas[2] = {cosa1, cosa2};
@@ -116,12 +116,12 @@ int main()
             // Conteo regresivo de 60 segundos
             for (int i = 0; i < 60; i++)
             {
-                mostrar((seconds / 10), (seconds % 10)); // Muestra el display de 60 segundos
+                mostrar(((seconds - (seconds%10))/10)), (seconds % 10)); // Muestra el display de 60 segundos
                 // displayNumber(seconds / 10, FIRST_GPIO_DISPLAY1); // Muestra el dígito de las decenas
                 // mostrar();
                 // displayNumber(seconds % 10, FIRST_GPIO_DISPLAY1); // Muestra el dígito de las unidades
                 // mostrar();
-                sleep_ms(1000);
+                //sleep_ms(1000);
                 seconds--;
             }
 
