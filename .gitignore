@@ -1,4 +1,4 @@
 build
 CMakeLists.txt
 pico_sdk_import.cmake
-.gitignore
+gitignore
