@@ -27,8 +27,8 @@ Esta funcion tiene como argumento `cycleStatus` un entero que representa el esta
 La logica de esta funcion tiene la siguiente estructura:
 
 -   Inicio de funcion:
-    -   Por cada vez que se invoque esta funcion significa que el boton fue presionado, por lo que tenemos que actualizar el estado al si`uiente
-    `cycleStatus++'
+    -   Por cada vez que se invoque esta funcion significa que el boton fue presionado, por lo que tenemos que actualizar el estado al siguiente
+    `cycleStatus++`
 -   Verificar que el estado se encuentre dentro de los limites:
     - Por lo que si al momento de llamar la funcion el estado es 2, tenemos que volver al primer estado.
     ```
