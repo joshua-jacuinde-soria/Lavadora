@@ -4,20 +4,20 @@
 
 #define FIRST_GPIO_DISPLAY1 12 // Primer GPIO para el primer display
 #define FIRST_GPIO_DISPLAY2 19 // Primer GPIO para el segundo display
-#define BUTTON_GPIO (20)
+#define BUTTON_GPIO 20
 
 // Patrones de bits para representar los números 0-9 en un display de 7 segmentos
 int bits[10] = {
-    0x3f, // 0
-    0x06, // 1
-    0x5b, // 2
-    0x4f, // 3
-    0x66, // 4
-    0x6d, // 5
-    0x7d, // 6
-    0x07, // 7
-    0x7f, // 8
-    0x67  // 9
+    0xC0, // 0
+    0xF9, // 1
+    0xA4, // 2
+    0xB0, // 3
+    0x99, // 4
+    0x92, // 5
+    0x82, // 6
+    0xF8, // 7
+    0x80, // 8
+    0x98  // 9
 };
 
 int common[8] = {
@@ -33,8 +33,8 @@ int common[8] = {
 void displayNumber(int number, int first_gpio)
 {
     // Dado un número, muestra el número en el display correspondiente
-    int32_t mask = bits[number % 10] << first_gpio;
-    gpio_set_mask(mask); // manda el mask
+    int32_t mask = ~bits[number % 10] << first_gpio; // Invertir los bits para ánodo común
+    gpio_set_mask(mask); // Manda el mask
 }
 
 void mostrar()
@@ -44,7 +44,7 @@ void mostrar()
     {
         for (int i = 0; i < 8; i++)
         {
-            int32_t mask_2 = bits[i] << FIRST_GPIO_DISPLAY1;
+            int32_t mask_2 = ~bits[i] << FIRST_GPIO_DISPLAY1; // Invertir los bits para ánodo común
             gpio_set_mask(mask_2);
             int32_t mask = common[i] << FIRST_GPIO_DISPLAY2;
             gpio_set_mask(mask);
@@ -54,7 +54,8 @@ void mostrar()
         }
         cont++;
     }
-};
+}
+
 int main()
 {
     stdio_init_all();
@@ -65,14 +66,12 @@ int main()
     {
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
-        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
     }
 
     for (int gpio = FIRST_GPIO_DISPLAY2; gpio < FIRST_GPIO_DISPLAY2 + 2; gpio++)
     {
         gpio_init(gpio);
         gpio_set_dir(gpio, GPIO_OUT);
-        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
     }
 
     gpio_init(BUTTON_GPIO);
@@ -98,7 +97,7 @@ int main()
                 mostrar();
             }
 
-            mostrar(common); // Muestra el display de 60 segundos
+            mostrar(); // Muestra el display de 60 segundos
             break;           // Sal del bucle cuando el temporizador llegue a cero
         }
     }
