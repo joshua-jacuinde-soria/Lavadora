@@ -1,5 +1,5 @@
 add_executable(ciclo-de-lavado 
-        ciclo-lavado.c 
+        pruebaFuncCiclo.c 
         )
 
 # pull in common dependencies
