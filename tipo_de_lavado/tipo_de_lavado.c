@@ -49,26 +49,21 @@ int main(){
     gpio_pull_up(BOTON);
 
 
-    int led_state = 2;
-    //int signal = 2;
+    int led_state = 6;
     
     while (true) {
         if (!gpio_get(BOTON) == 1) {
             led_state++;
             
-            if (led_state > 2)
+            if (led_state > 6)
             {
                 led_state = 0;
             }
-
-            gpio_put(LED_lavar, led_state == 0);
-            gpio_put(LED_enjuagar, led_state == 1);
-            gpio_put(LED_centrifugar, led_state == 2);
-
+            gpio_put(LED_lavar, (led_state == 0 || led_state == 3 || led_state == 4 || led_state == 6));
+            gpio_put(LED_enjuagar, led_state == 1 || led_state == 3 || led_state == 5 || led_state == 6);
+            gpio_put(LED_centrifugar, led_state == 2 || led_state == 4 || led_state == 5 || led_state == 6);
         }
-
-        /* 'sleep_ms(100)' proporciona un retardo para evitar rebotes del botón*/
-        sleep_ms(100);
+        sleep_ms(200);
     }
 
     return 0;
