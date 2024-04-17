@@ -2,8 +2,6 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
-// Definir el botton de encendido y led
-#define BUTTON_ON_OFF 27
 #define LED 28
 
 int encendidoApagado (int estado) {
