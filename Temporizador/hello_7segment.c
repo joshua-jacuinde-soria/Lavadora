@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include <stdbool.h>
 
 #define FIRST_GPIO_DISPLAY1 12 // Primer GPIO para el primer display
 #define FIRST_GPIO_DISPLAY2 20 // Primer GPIO para el segundo display
@@ -54,6 +55,13 @@ void mostrar( int decenas, int unidades) {
     }
 }
 
+int pausa(int estado){
+    estado ++;
+    if (estado > 2)
+        estado = 1;
+    return estado;
+}
+
 
 int main()
 {
@@ -78,15 +86,22 @@ int main()
     gpio_pull_up(BUTTON_GPIO);
 
     // Variables para el temporizador
-    // int decena= 6;
-    // int unidad= 0;
-    // Bucle principal
+    int decena = 6;
+    int unidad = 0;
+    int pause = 1;
+
+
      while (1) {
+        if (!gpio_get(BUTTON_GPIO)) {
+            pause = pausa(pause);
+        }
         // Espera a que se presione el botón para iniciar el temporizador
-        if (1) {
+        if (pause == 2) {
             // Conteo regresivo de 60 segundos
             for (int decena = 5; decena >= 0; decena--) {
+            
                 for (int unidad = 9; unidad >= 0; unidad--) {
+                    while 
                     mostrar(decena, unidad);
                 }
             }
@@ -94,6 +109,10 @@ int main()
         }
     }
     return 0;
+}
+
+void temporizador(int decena, int unidad) {
+    
 }
 
 // gpio_init(BUTTON_GPIO);
