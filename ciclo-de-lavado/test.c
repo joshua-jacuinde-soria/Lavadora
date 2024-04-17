@@ -1,7 +1,7 @@
 #include    <stdio.h>
 #include    "pico/stdlib.h"
 #include    "hardware/gpio.h"
-#include    "cicloLavado.c"
+#include    "cicloLavado.h"
 
 #define BUTTON_CICLO 7
 #define LED_SUAVE 4
