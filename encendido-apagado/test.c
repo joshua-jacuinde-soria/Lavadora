@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
+#include "encendidoApagado.h"
 
 #define LED 28
 #define BUTTON_ON_OFF 27
@@ -24,7 +25,7 @@ int main () {
     while (1) {
         if (!gpio_get(BUTTON_ON_OFF)) {
             // Actualizar el estado [0, 1]
-            estado = encedidoApagado(estado);
+            estado = encendidoApagado(estado);
             // Esperar 500 ms
             sleep_ms(500);
             printf("Estado: %d\n", estado);
