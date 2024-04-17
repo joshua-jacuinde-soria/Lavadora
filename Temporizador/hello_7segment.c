@@ -88,14 +88,11 @@ int main()
             for (int decena = 5; decena >= 0; decena--) {
                 for (int unidad = 9; unidad >= 0; unidad--) {
                     mostrar(decena, unidad);
-                    sleep_ms(1000); // Esperar un segundo
                 }
             }
             break; // Sal del bucle cuando el temporizador llegue a cero
         }
     }
-
-
     return 0;
 }
 
