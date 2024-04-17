@@ -23,3 +23,12 @@ En la siguiente tabla se muestran las conexiones que se tienen que hacer desde l
 |   9	|    led (enjuagado)	|
 |   10	|    led (centrifugado)	|
 |   11	|    botón	|
+
+# Funcionamiento del botón de "Función"
+
+|   Código	|   Explicación	|
+|---	|---	|
+|""const uint BOTON = 11;" 	|Esté codigo nos permite definir la constante BOTON = 11 cómo la salida del GPIO 11 de la Raspberry Pi Pico W"	|
+|"gpio_init(BOTON);"|"gpio_init()" inicializa un pin GPIO, en este caso le estamos diciendo a la Raspberry que queremos que inicie el pin 11|
+|"gpio_set_dir(BOTON, GPIO_IN);"| Esta llamada a gpio_set_dir() configuran la dirección de cada pin, al botón se configura como entrada (GPIO_IN) porque recibe un valor externo|
+|"gpio_pull_up(BOTON)"|La función 'gpio_pull_up(pin)' es utilizada para activar la resistencia de pull-up interna para un pin GPIO específico|
