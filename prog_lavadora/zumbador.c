@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "control.h"
 
 #define Zumbador 2
 
-int sonidos[1] = {
-    0b011001
+int sonidos[8] = {
+    1,0,1,1,0,1,0,1
 };
 
 int main(){
@@ -14,5 +13,16 @@ int main(){
     gpio_init(Zumbador);
     gpio_set_dir(Zumbador, GPIO_OUT);
     
+    while (true)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            int32_t mask = sonidos[i] << Zumbador;
+            gpio_set_mask(mask);
+            sleep_ms(20);
+            gpio_clr_mask(mask);
+        }
+    }
+         
 
 }
