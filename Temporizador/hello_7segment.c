@@ -3,8 +3,8 @@
 #include "hardware/gpio.h"
 
 #define FIRST_GPIO_DISPLAY1 12 // Primer GPIO para el primer display
-#define FIRST_GPIO_DISPLAY2 19 // Primer GPIO para el segundo display
-#define BUTTON_GPIO 21
+#define FIRST_GPIO_DISPLAY2 20 // Primer GPIO para el segundo display
+#define BUTTON_GPIO 19
 
 // Patrones de bits para representar los números 0-9 en un display de 7 segmentos
 int bits[10] = {
@@ -21,53 +21,22 @@ int bits[10] = {
 };
 
 int common[2] = {
-    0b01,0b10
+    0x1,0x2
 };
 
 int reconocer(int numero){
-    int valor;
-    switch(numero){
-        case 0:
-            valor = bits[0];
-            break;
-        case 1:
-            valor = bits[1];
-            break;
-        case 2:
-            valor = bits[2];
-            break;
-        case 3:
-            valor = bits[3];
-            break;
-        case 4:
-            valor = bits[4];
-            break;
-        case 5:
-            valor = bits[5];
-            break;
-        case 6:
-            valor = bits[6];
-            break;
-        case 7:
-            valor = bits[7];
-            break;
-        case 8:
-            valor = bits[8];
-            break;
-        case 9:
-            valor = bits[9];
-    }
-    return valor;
+    return bits[numero];;
 };
 
 void mostrar( int decenas, int unidades) {
     int cont = 0;
-    while (cont < 1000) {
-        int cosa1 = reconocer(decenas);
-        int cosa2 = reconocer(unidades);
-        int cosas[2] = {cosa1, cosa2};
+    while (cont < 600) {
+        int display_decenas = reconocer(decenas);
+        int display_unidades = reconocer(unidades);
+        int displays[2] = {display_decenas, display_unidades};
+
         for (int i = 0; i < 2; i++) {
-            int32_t mask_1 = cosas[i] << FIRST_GPIO_DISPLAY1; // Invertir los bits para ánodo común en el primer display
+            int32_t mask_1 = displays[i] << FIRST_GPIO_DISPLAY1; // Invertir los bits para ánodo común en el primer display
             gpio_set_mask(mask_1); // Manda el mask
             int32_t mask_2 = common[i] << FIRST_GPIO_DISPLAY2; // Invertir los bits para ánodo común en el segundo display
             // Encender ambos displays
@@ -76,6 +45,10 @@ void mostrar( int decenas, int unidades) {
             // Apagar ambos displays
             gpio_clr_mask(mask_2);
             gpio_clr_mask(mask_1);
+
+
+
+
         }
         cont++;
     }
@@ -105,33 +78,23 @@ int main()
     gpio_pull_up(BUTTON_GPIO);
 
     // Variables para el temporizador
-    int seconds = 60;
-
+    // int decena= 6;
+    // int unidad= 0;
     // Bucle principal
-    while (1)
-    {
+     while (1) {
         // Espera a que se presione el botón para iniciar el temporizador
-        if (gpio_get(BUTTON_GPIO))
-        {
+        if (1) {
             // Conteo regresivo de 60 segundos
-            for (int i = 0; i < 60; i++)
-            {
-                mostrar(((seconds - (seconds%10))/10)), (seconds % 10)); // Muestra el display de 60 segundos
-                // displayNumber(seconds / 10, FIRST_GPIO_DISPLAY1); // Muestra el dígito de las decenas
-                // mostrar();
-                // displayNumber(seconds % 10, FIRST_GPIO_DISPLAY1); // Muestra el dígito de las unidades
-                // mostrar();
-                //sleep_ms(1000);
-                seconds--;
+            for (int decena = 5; decena >= 0; decena--) {
+                for (int unidad = 9; unidad >= 0; unidad--) {
+                    mostrar(decena, unidad);
+                    sleep_ms(1000); // Esperar un segundo
+                }
             }
-
-            break;           // Sal del bucle cuando el temporizador llegue a cero
+            break; // Sal del bucle cuando el temporizador llegue a cero
         }
     }
 
-    // Detén el temporizador
-    // displayNumber(0, FIRST_GPIO_DISPLAY1);
-    // displayNumber(0, FIRST_GPIO_DISPLAY2);
 
     return 0;
 }
