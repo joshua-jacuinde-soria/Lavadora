@@ -17,21 +17,15 @@ int tiempos[8] = {
 
 
 void zumbador(int seleccion){
-    stdio_init_all();
     gpio_init(Zumbador);
     gpio_set_dir(Zumbador, GPIO_OUT);
-    
-    while (true)
-    {
         for (int i = 0; i < 8; i++)
             {
                 int32_t mask = sonidos[seleccion][i] << Zumbador;
                 gpio_set_mask(mask);
                 sleep_ms(tiempos[i]);
                 gpio_clr_mask(mask);
-            }
-        break;        
-    }
+            }        
 }
 
 int main(){
@@ -43,6 +37,8 @@ int main(){
     gpio_set_dir(boton_2, GPIO_IN);
     gpio_pull_up(boton_2);
     
+    stdio_init_all();
+
     int seleccion;
     while (true)
     {
