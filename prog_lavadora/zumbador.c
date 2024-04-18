@@ -46,11 +46,12 @@ int main(){
         if (!gpio_get(boton))
         {
             seleccion = 0;
+            zumbador(seleccion);
         }
         else if (!gpio_get(boton_2))
         {
             seleccion = 1;
+            zumbador(seleccion);
         }
-        zumbador(seleccion);
         }    
 }
