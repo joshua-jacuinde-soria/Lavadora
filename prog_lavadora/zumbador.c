@@ -35,7 +35,6 @@ int main(){
                 sleep_ms(tiempos[i]);
                 gpio_clr_mask(mask);
             }
-            sleep_ms(500);
         }
         
         
