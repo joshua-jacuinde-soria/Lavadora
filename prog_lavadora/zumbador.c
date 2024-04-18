@@ -36,9 +36,5 @@ int main(){
                 gpio_clr_mask(mask);
             }
         }
-        
-        
     }
-         
-
 }
