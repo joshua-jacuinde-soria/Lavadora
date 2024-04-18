@@ -16,7 +16,7 @@ int tiempos[8] = {
 };
 
 
-void zumbador(seleccion){
+void zumbador(int seleccion){
     stdio_init_all();
     gpio_init(Zumbador);
     gpio_set_dir(Zumbador, GPIO_OUT);
