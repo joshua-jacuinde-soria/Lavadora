@@ -43,10 +43,17 @@ int main(){
     gpio_set_dir(boton_2, GPIO_IN);
     gpio_pull_up(boton_2);
 
-    int seleccion;
-    if (!gpio_get(boton))
+    while (true)
     {
-        seleccion = 1;
-    }
-    
+        int seleccion;
+        if (!gpio_get(boton))
+        {
+            seleccion = 1;
+        }
+        if (!gpio_get(boton_2))
+        {
+            seleccion = 2;
+        }
+        zumbador(seleccion);
+        }    
 }
