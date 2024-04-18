@@ -11,7 +11,7 @@ int sonidos[8] = {
 };
 
 int tiempos[8] = {
-  30, 30, 10, 30, 10, 30, 10, 10
+  10, 30, 10, 30, 10, 30, 10, 10
 };
 
 
@@ -26,7 +26,7 @@ int main(){
     
     while (true)
     {
-        if (gpio_get(boton))
+        if (!gpio_get(boton))
         {
             for (int i = 0; i < 8; i++)
             {
