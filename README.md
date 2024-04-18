@@ -14,7 +14,6 @@ El ciclo principal del programa verifica constantemente que opción ah sido sele
 ## Configuración de Pines
 
 - El zumbador está conectado al pin GPIO 26 (`Zumbador`).
-- El botón está conectado al pin GPIO 0 (`boton`).
 
 ## Requisitos
 
