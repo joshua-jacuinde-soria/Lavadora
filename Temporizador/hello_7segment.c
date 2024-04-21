@@ -98,21 +98,23 @@ int main()
         // Espera a que se presione el botón para iniciar el temporizador
         if (pause == 2) {
             // Conteo regresivo de 60 segundos
-            for (int decena = 5; decena >= 0; decena--) {
-            
-                for (int unidad = 9; unidad >= 0; unidad--) {
-                    while 
-                    mostrar(decena, unidad);
+            mostrar(decena, unidad);
+            unidad--;
+            if (unidad < 0) {
+                unidad = 9;
+                decena--;
+                if (decena < 0) {
+                    break; // Sal del bucle cuando el temporizador llegue a cero
                 }
             }
-            break; // Sal del bucle cuando el temporizador llegue a cero
         }
     }
+
     return 0;
 }
 
 void temporizador(int decena, int unidad) {
-    
+
 }
 
 // gpio_init(BUTTON_GPIO);
