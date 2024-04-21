@@ -90,14 +90,33 @@ int main()
     int unidad = 0;
     int pause = 1;
 
+    bool ultimo_estado_boton = false;
+    bool boton_presionado = false;
 
-     while (1) {
-        if (!gpio_get(BUTTON_GPIO)) {
-            pause = pausa(pause);
+    while (1) {
+        bool estado_boton = !gpio_get(BUTTON_GPIO); // Leer el estado del botón 
+
+        // Detectar si el botón ha sido presionado (cambio de estado de alto a bajo)
+        if (!ultimo_estado_boton && estado_boton) {
+            boton_presionado = true;
         }
-        // Espera a que se presione el botón para iniciar el temporizador
+        ultimo_estado_boton = estado_boton;
+
+        // Verificar si se ha presionado el botón
+        if (boton_presionado) {
+            boton_presionado = false; // Reiniciar el indicador de presionado
+
+            // Alternar entre pausa y ejecución del temporizador
+            pause = pausa(pause);
+
+            // Si el temporizador está en pausa, no es necesario hacer nada más
+            if (pause == 1) {
+                continue; // Vuelve al inicio del bucle while
+            }
+        }
+
+        // Si el temporizador no está en pausa, continuar con el conteo
         if (pause == 2) {
-            // Conteo regresivo de 60 segundos
             mostrar(decena, unidad);
             unidad--;
             if (unidad < 0) {
@@ -109,6 +128,7 @@ int main()
             }
         }
     }
+
 
     return 0;
 }
