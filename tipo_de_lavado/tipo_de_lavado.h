@@ -30,5 +30,34 @@ int tipo_lavado (int estado){
     gpio_put(LED_enjuagar, estado == 1 || estado == 3 || estado == 5 || estado == 6);
     gpio_put(LED_centrifugar, estado == 2 || estado == 4 || estado == 5 || estado == 6);
 
+    /*
+    switch (estado)
+    {
+    case 0:
+        printf("Lavar");
+        break;
+    case 1:
+        printf("Enjuagar");
+        break;
+    case 2:
+        printf("Centrifugar");
+        break;
+    case 3:
+        printf("Lavar y Enjuagar");
+        break;
+    case 4:
+        printf("Lavar y Centrifugar");
+        break;
+    case 5:
+        printf("Enjuagar y Centrifugar");
+        break;
+    case 6:
+        pritnf("Lavado Completo.");
+        break;
+    default:
+        break;
+    }
+    */
+
     return estado;
 }
