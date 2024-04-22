@@ -1,36 +1,20 @@
-# Descripción del Código
+# Control de Lavadora
 
-Este código está diseñado para generar un sonido utilizando un zumbador conectado a un microcontrolador Raspberry Pi Pico. El sonido producido sigue un patrón específico para simular sonidos variados según la selección lo necesite. Además, esta es un añadido de funcionalidad para un panel de lavadora. Su función es que cada vez que se seleccione alguna funcion esta emita un sonido, al terminar algun ciclo suene de forma diferente, etc.
+Este programa controla el ciclo de lavado de una lavadora, utilizando varios módulos:
+
+- `encendidoApagado.h`: Función para encender y apagar la lavadora.
+- `hello_7segment.h`: Función para mostrar mensajes en un display de 7 segmentos.
+- `tipo_de_lavado.h`: Función para seleccionar el tipo de lavado.
+- `cicloLavado.h`: Función para ejecutar el ciclo de lavado.
+- `zumbador.h`: Función para activar el zumbador de la lavadora.
 
 ## Funcionamiento
 
-El código utiliza dos arreglos para controlar el patrón de sonido y los tiempos de reproducción:
+El programa sigue estos pasos:
 
-- El arreglo `sonidos` contiene los valores binarios (0 o 1) que representan el estado del zumbador en cada paso del sonido.
-- El arreglo `tiempos` define la duración en milisegundos de cada paso del sonido.
+1. Verifica si la lavadora está encendida.
+2. Selecciona el tipo de lavado.
+3. Ejecuta el ciclo de lavado según el tipo seleccionado, mostrando información en el display y activando el zumbador.
 
-El ciclo principal del programa verifica constantemente que opción ah sido seleccionada para que segun esta se emita un sonido en el zumbador. Cuando se detecta la selección, el código activa el zumbador para reproducir el patrón de sonido definido en los arreglos. Esto se logra mediante la activación y desactivación del zumbador según el patrón de sonido y los tiempos definidos.
+## Conexiones.
 
-## Configuración de Pines
-
-- El zumbador está conectado al pin GPIO 26 (`Zumbador`).
-
-## Requisitos
-
-- Placa Raspberry Pi Pico.
-- Conexión correcta del zumbador y el botón a los pines GPIO definidos en el código.
-- Entorno de desarrollo compatible con C para compilar y cargar el código en la placa.
-
-## Uso
-
-1. Configura tu entorno de desarrollo y asegúrate de tener los drivers y herramientas necesarias para programar la Raspberry Pi Pico.
-2. Conecta el zumbador y el botón según las especificaciones de pines definidas en el código.
-3. Compila y carga el código en la Raspberry Pi Pico.
-4. Ejecuta el programa y presiona el botón para escuchar el sonido generado que simula una moneda en el juego Mario Bros.
-
-## Notas
-
-- Puedes ajustar los valores en los arreglos `sonidos` y `tiempos` para modificar el patrón de sonido y la duración de cada paso según tus preferencias.
-- Asegúrate de seguir las medidas de seguridad al manipular componentes electrónicos y al utilizar la Raspberry Pi Pico.
-
-¡Disfruta del sonido de la moneda de Mario Bros generado por tu Raspberry Pi Pico!
