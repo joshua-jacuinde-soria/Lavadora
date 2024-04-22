@@ -29,4 +29,6 @@ int tipo_lavado (int estado){
     gpio_put(LED_lavar, (estado == 0 || estado == 3 || estado == 4 || estado == 6));
     gpio_put(LED_enjuagar, estado == 1 || estado == 3 || estado == 5 || estado == 6);
     gpio_put(LED_centrifugar, estado == 2 || estado == 4 || estado == 5 || estado == 6);
+
+    return estado;
 }
