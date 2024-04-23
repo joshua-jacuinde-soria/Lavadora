@@ -1,11 +1,11 @@
+ #ifndef ZUMBADOR_H
+ #define ZUMBADOR_H
 
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
 #define Zumbador 26
-#define boton 0
-#define boton_2 1
 
 int sonidos[2][8] = {
     {1, 1, 0, 1, 0, 1, 0, 0},{1, 0, 0, 0, 0, 0, 1, 1}
@@ -25,7 +25,8 @@ void zumbador(int seleccion){
             gpio_set_mask(mask);
             sleep_ms(tiempos[i]);
             gpio_clr_mask(mask);
-        }        
+        }   
+    return;     
 }
 
 // int main(){
@@ -55,3 +56,5 @@ void zumbador(int seleccion){
 //         }
 //         }    
 // }
+
+#endif

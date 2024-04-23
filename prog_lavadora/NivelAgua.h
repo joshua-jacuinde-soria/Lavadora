@@ -18,7 +18,7 @@ los GPIOs a los que están conectados los LEDs y el botón. */
 #define LED_Bajo 0           // Led para nivel de agua bajo
 #define LED_Medio 1        // Led para nivel de agua medio
 #define LED_Alto 2    // Led para nivel de agua alto
-#define BOTON 3              // Botón de acción
+#define BOTON_P 3              // Botón de acción
 
 int nivel_agua() {
     
@@ -31,7 +31,7 @@ int nivel_agua() {
     gpio_init(LED_Bajo);
     gpio_init(LED_Medio);
     gpio_init(LED_Alto);
-    gpio_init(BOTON);
+    gpio_init(BOTON_P);
 
     /* Estas llamadas a gpio_set_dir() configuran la dirección
     de cada pin. Los pines conectados a los LEDs se configuran 
@@ -41,19 +41,19 @@ int nivel_agua() {
     gpio_set_dir(LED_Bajo, GPIO_OUT);
     gpio_set_dir(LED_Medio, GPIO_OUT);
     gpio_set_dir(LED_Alto, GPIO_OUT);
-    gpio_set_dir(BOTON, GPIO_IN);
+    gpio_set_dir(BOTON_P, GPIO_IN);
 
     /* La función 'gpio_pull_up(pin)' es utilizada para activar
     la resistencia de pull-up interna para un pin GPIO específico*/
 
-    gpio_pull_up(BOTON);
+    gpio_pull_up(BOTON_P);
 
 
     int led_state = 2;
     //int signal = 2;
     
     //while (1) {
-        if (!gpio_get(BOTON) == 1) {
+        if (!gpio_get(BOTON_P) == 1) {
             led_state++;
             
             if (led_state > 2)
