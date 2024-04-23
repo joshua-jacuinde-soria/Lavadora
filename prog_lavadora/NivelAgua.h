@@ -8,10 +8,11 @@
 */
 
 //Se importan las librerias a utilizar
-#include <stdio.h>
-#include "pico/stdlib.h"
 #ifndef ZUMBADOR_H
 #define ZUMBADOR_H
+#include <stdio.h>
+#include "pico/stdlib.h"
+
 
 /* Aquí se definen constantes para los números de pin de 
 los GPIOs a los que están conectados los LEDs y el botón. */ 
