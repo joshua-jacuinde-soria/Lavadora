@@ -31,4 +31,9 @@ int main (){
     gpio_set_dir(LED_centrifugar, GPIO_OUT);
     gpio_set_dir(BOTON, GPIO_IN);
 
+    /* La función 'gpio_pull_up(pin)' es utilizada para activar
+    la resistencia de pull-up interna para un pin GPIO específico*/
+
+    gpio_pull_up(BOTON);
+    
 }
