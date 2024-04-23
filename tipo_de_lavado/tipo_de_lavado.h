@@ -1,4 +1,9 @@
-#include "hardware/gpio.h"
+//#include "hardware/gpio.h"
+//#include <stdio.h>
+// Descomentar -> #include "zumbador.h"
+#ifndef THIS_s
+#define THIS_s
+
 
 /* Aquí se definen constantes para los números de pin de 
 los GPIOs a los que están conectados los LEDs y el botón. */ 
@@ -61,3 +66,5 @@ int tipo_lavado (int estado){
 
     return estado;
 }
+
+#endif
