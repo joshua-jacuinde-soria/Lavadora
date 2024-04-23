@@ -21,4 +21,14 @@ int main (){
     gpio_init(LED_centrifugar);
     gpio_init(BOTON);
 
+    /* Estas llamadas a gpio_set_dir() configuran la dirección
+    de cada pin. Los pines conectados a los LEDs se configuran 
+    como salidas (GPIO_OUT), y el pin conectado al botón se 
+    configura como entrada (GPIO_IN) .*/
+
+    gpio_set_dir(LED_lavar, GPIO_OUT);
+    gpio_set_dir(LED_enjuagar, GPIO_OUT);
+    gpio_set_dir(LED_centrifugar, GPIO_OUT);
+    gpio_set_dir(BOTON, GPIO_IN);
+
 }
