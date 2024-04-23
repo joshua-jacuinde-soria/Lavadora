@@ -1,8 +1,6 @@
 /*
     Universidad Autónoma Metropilitana
-    Alumno: Alan David Benítez García
     Matricula: 2193036254
-    Profesor: Dr. Adán Geovanni Medrano Chávez.
     UEA: Microconroladores.
 
 */
