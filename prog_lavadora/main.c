@@ -2,13 +2,14 @@
 #include "encendidoApagado.h"
 #include "hello_7segment.h"
 #include "tipo_de_lavado.h"
+#include "NivelAgua.h"
 #include "zumbador.h"
 
 int main(){
     while (encendido_Apagado())
     {
 
-
+        nivel_agua();
 
         if (tipo_de_lavado_() == (0,1,2))
         {
