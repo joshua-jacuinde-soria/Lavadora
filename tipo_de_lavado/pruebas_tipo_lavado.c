@@ -41,5 +41,15 @@ int main (){
     boton. */
     int estado = 6;
 
+    while (true) {
+        if (!gpio_get(BOTON) == 1) {
+            /*La siguiente instrucción manda a llamar a la 
+            función "tipo_lavado" para que se realize el proceso
+            de lectura de datos.*/
+            estado = tipo_lavado(estado);
+        }
+        sleep_ms(200);
+    }
+
     // pruebas_tipo_lavado.c :
 }
