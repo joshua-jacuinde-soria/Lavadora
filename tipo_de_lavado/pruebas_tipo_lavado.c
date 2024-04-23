@@ -52,4 +52,5 @@ int main (){
     }
 
     // pruebas_tipo_lavado.c :
+    return (0);
 }
