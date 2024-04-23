@@ -1,6 +1,5 @@
 /*
-    Universidad Autónoma Metropilitana
-    Matricula: 2193036254
+    Universidad Autónoma Metropilitana.
     UEA: Microconroladores.
 
 */
