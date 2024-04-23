@@ -35,5 +35,11 @@ int main (){
     la resistencia de pull-up interna para un pin GPIO específico*/
 
     gpio_pull_up(BOTON);
-    
+
+    /* Se inicializa el contador que enviará la señal del estado
+    en el que este actualmente el tipo de lavado por medio del 
+    boton. */
+    int estado = 6;
+
+    // pruebas_tipo_lavado.c :
 }
