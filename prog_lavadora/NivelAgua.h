@@ -8,10 +8,13 @@
 */
 
 //Se importan las librerias a utilizar
+#ifndef ZUMBADOR_H
+#define ZUMBADOR_H
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "zumbador.h"
+
 
 /* Aquí se definen constantes para los números de pin de 
 los GPIOs a los que están conectados los LEDs y el botón. */ 
@@ -64,4 +67,9 @@ int nivel_agua() {
             gpio_put(LED_Alto, led_state == 2);
     }
     return 0;
+<<<<<<< HEAD
 }
+=======
+    
+}
+>>>>>>> e41c11ed156d1a52bec735f92dcf93681643b86d
