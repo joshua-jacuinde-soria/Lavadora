@@ -57,7 +57,6 @@ int pausa(int estado){
 }
 
 void inicio_visualizador(){
-    stdio_init_all();
     printf("Temporizador de 60 segundos - Presiona el botón para iniciar\n");
 
     // Inicialización de los GPIOs para los displays y el botón

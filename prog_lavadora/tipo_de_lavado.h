@@ -19,7 +19,6 @@ const uint LED_centrifugar = 10;    // Led para centrifugar
 const uint BOTON_2 = 11;              // Botón de acción
 
 void inicio_tipolavado(){
-    stdio_init_all();
     
     /* Cada llamada a gpio_init() inicializa un pin GPIO. 
     Esta función debe ser llamada en cada pin antes de 

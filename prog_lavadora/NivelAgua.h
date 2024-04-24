@@ -22,9 +22,9 @@ los GPIOs a los que están conectados los LEDs y el botón. */
 #define LED_Medio 1        // Led para nivel de agua medio
 #define LED_Alto 2    // Led para nivel de agua alto
 #define BOTON_P 3              // Botón de acción
+int led_state = 2;
 
 void inicio_nivelagua(){
-    stdio_init_all();
     
     /* Cada llamada a gpio_init() inicializa un pin GPIO. 
     Esta función debe ser llamada en cada pin antes de 
@@ -49,20 +49,22 @@ void inicio_nivelagua(){
     la resistencia de pull-up interna para un pin GPIO específico*/
 
     gpio_pull_up(BOTON_P);
+    gpio_put(LED_Bajo, false);
+    gpio_put(LED_Medio, false);
+    gpio_put(LED_Alto, false);
 }
 
-int nivel_agua() {
-    int led_state = 2;
-        if (!gpio_get(BOTON_P) == 1) {
+
+void nivel_agua() {
+        if (!gpio_get(BOTON_P)) {
             led_state++;
             zumbador(1);
             if (led_state > 2)
             {
                 led_state = 0;
             }
-            gpio_put(LED_Bajo, led_state == 0);
-            gpio_put(LED_Medio, led_state == 1);
-            gpio_put(LED_Alto, led_state == 2);
+            gpio_put(LED_Bajo, (led_state == 0));
+            gpio_put(LED_Medio, (led_state == 1));
+            gpio_put(LED_Alto, (led_state == 2));
     }
-    return 0;
 }
