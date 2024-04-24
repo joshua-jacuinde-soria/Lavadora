@@ -1,3 +1,6 @@
+#ifndef ENCENDIDOAPAGADO_H
+#define ENCENDIDOAPAGADO_H
+
 #include "hardware/gpio.h"
 
 #define LED 28
@@ -10,3 +13,5 @@ int encendidoApagado (int estado) {
     // Retornar el estado actualizado
     return estado;
 }
+
+#endif

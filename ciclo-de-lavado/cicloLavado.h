@@ -1,3 +1,6 @@
+#ifndef CICLO_LAVADO_H
+#define CICLO_LAVADO_H
+
 #include "hardware/gpio.h"
 
 // Definir  los pines de los LEDs
@@ -17,3 +20,5 @@ int cicloLavado(int cycleStatus) {
 
     return cycleStatus;
 }
+
+#endif
