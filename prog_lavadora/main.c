@@ -6,6 +6,14 @@
 #include "zumbador.h"
 
 int main(){
+
+    inicio_ciclolavado();
+    inicio_encendidoApagado();
+    inicio_nivelagua();
+    inicio_tipolavado();
+    inicio_visualizador();
+    inicio_zumbador();
+
     while (encendido_Apagado())
     {
 
@@ -32,11 +40,7 @@ int main(){
                 zumbador(2);
             }
         }
-        
-        
-        
-        
-        
+        sleep_ms(120); 
     }
 }
 

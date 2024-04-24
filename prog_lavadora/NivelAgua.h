@@ -10,6 +10,8 @@
 //Se importan las librerias a utilizar
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include "zumbador.h"
 
 /* Aquí se definen constantes para los números de pin de 
 los GPIOs a los que están conectados los LEDs y el botón. */ 
@@ -20,8 +22,7 @@ los GPIOs a los que están conectados los LEDs y el botón. */
 #define LED_Alto 2    // Led para nivel de agua alto
 #define BOTON_P 3              // Botón de acción
 
-int nivel_agua() {
-    
+void inicio_nivelagua(){
     stdio_init_all();
     
     /* Cada llamada a gpio_init() inicializa un pin GPIO. 
@@ -47,30 +48,20 @@ int nivel_agua() {
     la resistencia de pull-up interna para un pin GPIO específico*/
 
     gpio_pull_up(BOTON_P);
+}
 
-
+int nivel_agua() {
     int led_state = 2;
-    //int signal = 2;
-    
-    //while (1) {
         if (!gpio_get(BOTON_P) == 1) {
             led_state++;
-            
+            zumbador(1);
             if (led_state > 2)
             {
                 led_state = 0;
             }
-
             gpio_put(LED_Bajo, led_state == 0);
             gpio_put(LED_Medio, led_state == 1);
             gpio_put(LED_Alto, led_state == 2);
-
-        //}
-
-        /* 'sleep_ms(100)' proporciona un retardo para evitar rebotes del botón*/
-       // sleep_ms(100);
     }
-
     return 0;
-    
 }

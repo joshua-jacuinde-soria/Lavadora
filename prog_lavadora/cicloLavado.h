@@ -7,14 +7,24 @@
 #define LED_RAPIDO 6
 #define BOTON 7
 
-int cicloLavado() {
+void inicio_ciclolavado(){
     gpio_init(BOTON);
     gpio_set_dir(BOTON, GPIO_IN);
+    gpio_init(LED_SUAVE);
+    gpio_set_dir(LED_SUAVE, GPIO_OUT);
+    gpio_init(LED_PESADO);
+    gpio_set_dir(LED_PESADO, GPIO_OUT);
+    gpio_init(LED_RAPIDO);
+    gpio_set_dir(LED_RAPIDO, GPIO_OUT);
     gpio_pull_up(BOTON);
+
+}
+
+int cicloLavado() {
 
     int cycleStatus = 0;
     // Cambiar el ciclo de lavado
-    if (gpio_get(BOTON))
+    if (!gpio_get(BOTON))
     {
         cycleStatus++;  
         zumbador(1);
