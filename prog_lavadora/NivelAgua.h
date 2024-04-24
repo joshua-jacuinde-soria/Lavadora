@@ -52,6 +52,8 @@ void inicio_nivelagua(){
     gpio_put(LED_Bajo, false);
     gpio_put(LED_Medio, false);
     gpio_put(LED_Alto, false);
+
+    led_state = 2;
 }
 
 

@@ -6,7 +6,7 @@
 #define LED_PESADO 5
 #define LED_RAPIDO 6
 #define BOTON 7
-int cycleStatus = 0;
+int cycleStatus = -1;
 
 void inicio_ciclolavado(){
     gpio_init(BOTON);
@@ -23,7 +23,7 @@ void inicio_ciclolavado(){
     gpio_put(LED_PESADO, false);
     gpio_put(LED_RAPIDO, false);
     
-
+    cycleStatus = -1;
 }
 
 int cicloLavado() {
