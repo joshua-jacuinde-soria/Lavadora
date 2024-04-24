@@ -18,17 +18,18 @@ bool ultimo_estado_boton = false;
 bool boton_presionado = false;
 
 // Patrones de bits para representar los números 0-9 en un display de 7 segmentos
-int bits[10] = {
+int bits[11] = {
     0xC0, // 0
     0xF9, // 1
     0xA4, // 2
     0xB0, // 3
     0x99, // 4
-    0x92, // 5
+    0x91, // 5
     0x82, // 6
     0xF8, // 7
     0x80, // 8
-    0x98  // 9
+    0x98,  // 9
+    0x00
 };
 
 
@@ -85,6 +86,7 @@ int pausa_vis(){
     if (!gpio_get(BUTTON_GPIO))
     {
         estado_2 ++;
+        zumbador(1);
     }
     if (estado_2 > 2)
         estado_2 = 1;
@@ -110,12 +112,10 @@ int visualizador(int valor, int pausa)
         unidad = 0;
         while (decena >= 0)
         {
-            // pausa = pausa_vis();
-            // while (pausa == 2 )
-            // {
-            //     mostrar(decena,unidad);
-            //     sleep_ms(500);
-            // }
+            while (pausa_vis() == 2 )
+            {
+                mostrar(decena,unidad);
+            }
             mostrar(decena, unidad);
             unidad--;
             if (unidad < 0) {
@@ -128,45 +128,5 @@ int visualizador(int valor, int pausa)
     }
 
     return 0;
-
-    
-    // while (1) {
-    // bool estado_boton = !gpio_get(BUTTON_GPIO); // Leer el estado del botón 
-
-    // // Detectar si el botón ha sido presionado (cambio de estado de alto a bajo)
-    // if (!ultimo_estado_boton && estado_boton) {
-    //     boton_presionado = true;
-    // }
-    // ultimo_estado_boton = estado_boton;
-
-    // // Verificar si se ha presionado el botón
-    // if (boton_presionado) {
-    //     boton_presionado = false; // Reiniciar el indicador de presionado
-
-    //     // Alternar entre pausa y ejecución del temporizador
-    //     pause = pausa(pause);
-
-    //     // Si el temporizador está en pausa, mostrar el valor actual y quedarse pausado
-    //     if (pause == 1) {
-    //         // Continuar mostrando el valor actual mientras el temporizador está pausado
-    //         while (pause == 1) {
-    //             mostrar(decena, unidad); 
-    //             // Esperar un breve período de tiempo antes de volver a verificar el estado del botón
-    //             sleep_ms(50);
-    //             // Verificar si se presiona el botón para reanudar el temporizador
-    //             estado_boton = !gpio_get(BUTTON_GPIO);
-    //             if (estado_boton) {
-    //                 pause = pausa(pause); // Alternar entre pausa y ejecución del temporizador
-    //                 break; // Salir del bucle while interno
-    //             }
-    //         }
-    //         continue; // Vuelve al inicio del bucle while externo
-    //     }
-    // }
-
-    // // Si el temporizador no está en pausa, continuar con el conteo
-    // if (pause == 2) {
-    //     
-    //     }
 }
 #endif

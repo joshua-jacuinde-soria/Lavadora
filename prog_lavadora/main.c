@@ -24,7 +24,6 @@ int main(){
 
     while (true)
     {
-        //estado_2 = 0;
 
         if(encendido_Apagado()){
             nivel_agua();
@@ -36,6 +35,25 @@ int main(){
                 visualizador(ciclo, pausa_);
                 estado_2 = 0;
             }
+            else if (tipo_de_lavado_() == 3 || tipo_de_lavado_() == 4 || tipo_de_lavado_() == 5)
+            {
+                pausa_ = pausa_vis();
+                visualizador(ciclo, pausa_);
+                estado_2 = 0;
+                visualizador(ciclo, pausa_);
+                estado_2 = 0;
+            }
+            else
+            {
+                pausa_ = pausa_vis();
+                visualizador(ciclo, pausa_);
+                estado_2 = 0;
+                visualizador(ciclo, pausa_);
+                estado_2 = 0;
+                visualizador(ciclo, pausa_);
+                estado_2 = 0;
+            }
+            
             
         }
         else
