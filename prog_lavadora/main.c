@@ -21,9 +21,11 @@ int main(){
     inicio_zumbador();
     int ciclo;
     int pausa_;
-    
+
     while (true)
     {
+        //estado_2 = 0;
+
         if(encendido_Apagado()){
             nivel_agua();
             ciclo = cicloLavado();
@@ -32,7 +34,7 @@ int main(){
             {
                 pausa_ = pausa_vis();
                 visualizador(ciclo, pausa_);
-                zumbador(2);
+                estado_2 = 0;
             }
             
         }

@@ -1,3 +1,6 @@
+#ifndef VISUALIZADOR_H
+#define VISUALIZADOR_H
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -89,9 +92,8 @@ int pausa_vis(){
     return estado_2;
 }
 
-void visualizador(int valor, int pausa)
+int visualizador(int valor, int pausa)
 {
-
     if (valor == 0){
         decena = 3;
     }
@@ -105,25 +107,27 @@ void visualizador(int valor, int pausa)
     }
 
     if (pausa == 1){
-        while (decena >= 0 )
+        unidad = 0;
+        while (decena >= 0)
         {
-            pausa = pausa_vis();
-            while (pausa == 2 )
-            {
-                mostrar(decena,unidad);
-                sleep_ms(500);
-            }
+            // pausa = pausa_vis();
+            // while (pausa == 2 )
+            // {
+            //     mostrar(decena,unidad);
+            //     sleep_ms(500);
+            // }
             mostrar(decena, unidad);
             unidad--;
             if (unidad < 0) {
                 unidad = 9;
                 decena--;
+            }
         }
-        
-        
-    }
+        zumbador(0);
 
     }
+
+    return 0;
 
     
     // while (1) {
@@ -165,3 +169,4 @@ void visualizador(int valor, int pausa)
     //     
     //     }
 }
+#endif
