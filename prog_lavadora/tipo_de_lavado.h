@@ -17,6 +17,7 @@ const uint LED_lavar = 8;           // Led para lavar
 const uint LED_enjuagar = 9;        // Led para enjuagar
 const uint LED_centrifugar = 10;    // Led para centrifugar
 const uint BOTON_2 = 11;              // Botón de acción
+int led_state_2 = 6;
 
 void inicio_tipolavado(){
     
@@ -43,25 +44,26 @@ void inicio_tipolavado(){
     la resistencia de pull-up interna para un pin GPIO específico*/
 
     gpio_pull_up(BOTON_2);
+    gpio_put(LED_lavar, false);
+    gpio_put(LED_enjuagar,false);
+    gpio_put(LED_centrifugar, false);
 }
 
 int tipo_de_lavado_(){
-    int led_state = 6;
     
         if (!gpio_get(BOTON_2)) {
-            led_state++;
+            led_state_2++;
             zumbador(1);
             
-            if (led_state > 6)
+            if (led_state_2 > 6)
             {
-                led_state = 0;
+                led_state_2 = 0;
             }
-            gpio_put(LED_lavar, (led_state == 0 || led_state == 3 || led_state == 4 || led_state == 6));
-            gpio_put(LED_enjuagar, led_state == 1 || led_state == 3 || led_state == 5 || led_state == 6);
-            gpio_put(LED_centrifugar, led_state == 2 || led_state == 4 || led_state == 5 || led_state == 6);
+            gpio_put(LED_lavar, (led_state_2 == 0 || led_state_2 == 3 || led_state_2 == 4 || led_state_2 == 6));
+            gpio_put(LED_enjuagar, led_state_2 == 1 || led_state_2 == 3 || led_state_2 == 5 || led_state_2 == 6);
+            gpio_put(LED_centrifugar, led_state_2 == 2 || led_state_2 == 4 || led_state_2 == 5 || led_state_2 == 6);
     }
-
-    return led_state;
+    return led_state_2;
 }
 
 

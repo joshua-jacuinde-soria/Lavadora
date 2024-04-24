@@ -23,14 +23,15 @@ int main(){
     while (true)
     {
         if(encendido_Apagado()){
-            zumbador(0);
-
             nivel_agua();
-
+            if (tipo_de_lavado_() == 0 || tipo_de_lavado_() == 1 || tipo_de_lavado_() == 2)
+            {
+                visualizador(cicloLavado());
+                zumbador(2);
+            }
+            
         //     if (tipo_de_lavado_() == (0,1,2))
         //     {
-        //         visualizador(cicloLavado());
-        //         zumbador(2);
         //     }
         //     else if (tipo_de_lavado_() == (3,4,5))
         //     {
@@ -52,10 +53,11 @@ int main(){
         else
         {
             inicio_nivelagua();
+            inicio_tipolavado();
         }
         
                 
-        sleep_ms(20); 
+        sleep_ms(50); 
     }
 }
 
