@@ -20,14 +20,19 @@ int main(){
     inicio_visualizador();
     inicio_zumbador();
     int ciclo;
+    int pausa_;
+    
     while (true)
     {
         if(encendido_Apagado()){
             nivel_agua();
             ciclo = cicloLavado();
+
             if (tipo_de_lavado_() == 0 || tipo_de_lavado_() == 1 || tipo_de_lavado_() == 2)
             {
-                //zumbador(2);
+                pausa_ = pausa_vis();
+                visualizador(ciclo, pausa_);
+                zumbador(2);
             }
             
         }
@@ -36,6 +41,7 @@ int main(){
             inicio_nivelagua();
             inicio_tipolavado();
             inicio_ciclolavado();
+            inicio_visualizador();
         }
         
                 

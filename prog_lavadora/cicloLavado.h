@@ -22,6 +22,7 @@ void inicio_ciclolavado(){
     gpio_put(LED_SUAVE, false);
     gpio_put(LED_PESADO, false);
     gpio_put(LED_RAPIDO, false);
+    
 
 }
 
