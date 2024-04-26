@@ -14,7 +14,7 @@ zumbador/
 /.vscode/
 
 # Ignore gitignore file
-# /.gitignore
+/.gitignore
 
 # Ignore pico-sdk
 pico_sdk_import.cmake
