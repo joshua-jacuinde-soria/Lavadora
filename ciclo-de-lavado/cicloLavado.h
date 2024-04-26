@@ -34,12 +34,13 @@ void inicio_cicloLavado() {
     cycleStatus = -1;
 }
 
-int cicloLavado(int cycleStatus) {
+int cicloLavado() {
     // Cuando el boton sea presionado
     if (!gpio_get(BOTON)) {
         cycleStatus++;
         zumbador(1);
     }
+    // Si el ciclo de lavado es mayor a 2, reiniciar el ciclo
     if (cycleStatus > 2) {
         cycleStatus = 0;
     }
