@@ -1,0 +1,20 @@
+# Ignore DS_Store files
+.DS_Store
+
+# Ignore zumbador directory since it's gonna be in main branch
+zumbador/
+
+# Ignore the build output directory
+/build/
+
+# Ignore the CMakeLists.txt file alocated in root directory
+/CMakeLists.txt
+
+# Ignore vscode settings
+/.vscode/
+
+# Ignore gitignore file
+/.gitignore
+
+# Ignore pico-sdk
+pico_sdk_import.cmake
