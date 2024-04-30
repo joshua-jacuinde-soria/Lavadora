@@ -18,3 +18,15 @@ El programa sigue estos pasos:
 
 ## Conexiones.
 ![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/Esquema%20de%20conexion.jpg)
+
+## Diagramas de flujo
+# principal
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/principal.png)
+# inicialización
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/inicializacion.png)
+# Tipo de Lavado/ ciclo de lavado / nivel de agua
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/lavados.png)
+# Visualizador
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/vizualizdor.png)
+# Zumbador
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/zumbador.png)
