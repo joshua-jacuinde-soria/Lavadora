@@ -8,13 +8,13 @@ zumbador/
 /build/
 
 # Ignore the CMakeLists.txt file alocated in root directory
-/CMakeLists.txt
+# /CMakeLists.txt
 
 # Ignore vscode settings
 /.vscode/
 
 # Ignore gitignore file
-/.gitignore
+# /.gitignore
 
 # Ignore pico-sdk
-pico_sdk_import.cmake
+# pico_sdk_import.cmake
