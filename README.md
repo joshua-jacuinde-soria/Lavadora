@@ -17,16 +17,16 @@ El programa sigue estos pasos:
 3. Ejecuta el ciclo de lavado según el tipo seleccionado, mostrando información en el display y activando el zumbador.
 
 ## Conexiones.
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/Esquema%20de%20conexion.jpg)
+![sin imagen](img/conexion.jpg)
 
 ## Diagramas de flujo
 # principal
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/principal.png)
+![sin imagen](img/principal.jpg)
 # inicialización
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/inicializacion.png)
+![sin imagen](img/inicializacion.png)
 # Tipo de Lavado/ ciclo de lavado / nivel de agua
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/lavados.png)
+![sin imagen](img/lavados.png)
 # Visualizador
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/vizualizdor.png)
+![sin imagen](img/vizualizdor.png)
 # Zumbador
-![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/zumbador.png)
+![sin imagen](img/zumbador.png)
