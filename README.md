@@ -17,3 +17,4 @@ El programa sigue estos pasos:
 3. Ejecuta el ciclo de lavado según el tipo seleccionado, mostrando información en el display y activando el zumbador.
 
 ## Conexiones.
+![sin imagen](https://github.com/joshua-jacuinde-soria/Lavadora/blob/main/Esquema%20de%20conexion.jpg)
