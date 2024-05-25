@@ -1,4 +1,4 @@
-# Control de Lavadora
+# Implementación de DashBoard por medio del protocolo MQTT
 
 Este programa controla el ciclo de lavado de una lavadora, utilizando varios módulos:
 
