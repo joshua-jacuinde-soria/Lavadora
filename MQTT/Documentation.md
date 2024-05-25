@@ -1,6 +1,7 @@
 # Implementación de DashBoard por medio del protocolo MQTT
 
-Este programa controla el ciclo de lavado de una lavadora, utilizando varios módulos:
+# `Introducción`
+Este programa se encargará de leer los valores de los sensores que estén conectados al microcontrolador "Raspberry Pi Pico W" mediante el protocólo MQTT y se mostrarán en un Dashboard.
 
 - `encendidoApagado.h`: Función para encender y apagar la lavadora.
 - `hello_7segment.h`: Función para mostrar mensajes en un display de 7 segmentos.
