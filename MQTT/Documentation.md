@@ -14,13 +14,15 @@ La función de este programa es encargarse de leer los valores de los sensores q
 
 ## Funcionamiento
 
-##### Mosquitto
+#### Mosquitto
 
 1. Primero tendremos que seguir el proceso de instalación de la herramienta Mosquitto para poder usarla sin problemas.
 2. Nos ubicarememos en la carpeta que contiene el ejecutable de la aplicación por lo general en Windows se encuentra en la siguiente ruta: `"C:\Program Files\mosquitto"`.
 3. Una vez aquí ya deberiamos tener configurado los archivos necesarios para poder evitar los porblemas de permisos.
-4. Ejecutamos el siguiente comando en CMD para poder ejecutar Mosquitto: `"mosquitto -c mosquitto.conf"`.
-5. 
+4. Ejecutamos el siguiente comando en CMD para poder ejecutar Mosquitto (debemos estar ubicados dentro de la carpeta que contiene el ejecutable de Mosquitto): `"mosquitto -c mosquitto.conf"`.
+5. Ahora que hemos habilidato el Broker Mosquitto, podemos hacer subscripciones y publicaciones directamente desde Mosquitto o cualquier aplicación que se conecte al IP que estamos trabajando; también es necesario conectarse al Puerto en el cúal estamos trabajando (este caso 1833).
+
+Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por el IP en el que estemos trabajando, una vez hecho esto debemos configurar los dispositivos que queremos hacer subscripciones y publicaciones.
 
 El programa sigue estos pasos:
 
