@@ -24,12 +24,6 @@ La función de este programa es encargarse de leer los valores de los sensores q
 
 Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por el IP en el que estemos trabajando, una vez hecho esto debemos configurar los dispositivos que queremos hacer subscripciones y publicaciones.
 
-#### Mosquitto
-
-El programa sigue estos pasos:
-
-1. Verifica si la lavadora está encendida.
-2. Selecciona el tipo de lavado.
-3. Ejecuta el ciclo de lavado según el tipo seleccionado, mostrando información en el display y activando el zumbador.
+#### Funciones
 
 ## Conexiones.
