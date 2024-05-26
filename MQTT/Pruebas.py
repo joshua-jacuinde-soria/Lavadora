@@ -68,17 +68,21 @@ def read_DHTT22_Temp():
     except OSError as e:
         print("Error al leer el sensor:", e)
         return None, None
-
-while True:
-    temperature = read_temperature()
-    print('Luz_T: ', temperature)
-    client.publish(MQTT_TOPIC_luz, str(temperature))
-
-    #time.sleep(5)
-    DHT_T, DHT_H = read_DHTT22_Temp()
-    print('DHT1: ', DHT_T)
-    client.publish(MQTT_TOPIC_DHT1, str(DHT_T))
     
-    print('DHT2: ', DHT_H)
-    client.publish(MQTT_TOPIC_DHT2, str(DHT_H))
-    time.sleep(5)
+def read_and_publish():
+    while True:
+        temperature = read_temperature()
+        print('Luz_T: ', temperature)
+        client.publish(MQTT_TOPIC_luz, str(temperature))
+
+        #time.sleep(5)
+        DHT_T, DHT_H = read_DHTT22_Temp()
+        print('DHT1: ', DHT_T)
+        client.publish(MQTT_TOPIC_DHT1, str(DHT_T))
+        
+        print('DHT2: ', DHT_H)
+        client.publish(MQTT_TOPIC_DHT2, str(DHT_H))
+        time.sleep(5)
+
+
+read_and_publish()

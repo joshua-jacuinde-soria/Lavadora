@@ -26,4 +26,8 @@ Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por
 
 #### Funciones
 
+- `Pruebas.py`
+
+- `Ej()` :
+
 ## Conexiones.
