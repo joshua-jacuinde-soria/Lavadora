@@ -8,34 +8,6 @@ import dht
 dht_pin = Pin(11)
 sensor = dht.DHT22(dht_pin)
 
-# Configuración de la red Wi-Fi
-SSID = 'INFINITUM6832_2.4'
-PASSWORD = 'XnCjzCT8id'
-
-# Conectar a Wi-Fi
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-try:
-    wlan.connect(SSID, PASSWORD)
-except OSError as error:
-    print(f'error is {error}')
-
-# Esperar la conexión WiFi
-max_attempts = 10
-attempt = 0
-while not wlan.isconnected() and attempt < max_attempts:
-    print('Intentando conectar a WiFi...')
-    time.sleep(1)
-    attempt += 1
-
-if wlan.isconnected():
-    print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
-else:
-    print('Error: No se pudo conectar a la red WiFi')
-    raise RuntimeError('No se pudo conectar a la red WiFi')
-
-print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
-
 # Configuración del broker MQTT
 MQTT_SERVER = '192.168.1.74'
 MQTT_PORT = 1883
@@ -43,10 +15,7 @@ MQTT_TOPIC_luz = 'sensors/luz'
 MQTT_TOPIC_DHT1 = 'sensors/temp'
 MQTT_TOPIC_DHT2 = 'sensors/hum'
 
-client = MQTTClient('LA_SONORA_DINAMITA', MQTT_SERVER, port=MQTT_PORT)
-
-# Conectar al broker MQTT
-client.connect()
+client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 # Configuración del termoresistor
 thermistor_pin = ADC(Pin(26))
@@ -70,6 +39,9 @@ def read_DHTT22_Temp():
         return None, None
     
 def read_and_publish():
+    conecction_wifi()
+    # Conectar al broker MQTT
+    client.connect()
     while True:
         temperature = read_temperature()
         print('Luz_T: ', temperature)
@@ -84,5 +56,32 @@ def read_and_publish():
         client.publish(MQTT_TOPIC_DHT2, str(DHT_H))
         time.sleep(5)
 
+def conecction_wifi()->None:
+    # Configuración de la red Wi-Fi
+    SSID = 'INFINITUM6832_2.4'
+    PASSWORD = 'XnCjzCT8id'
+    # Conectar a Wi-Fi
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    try:
+        wlan.connect(SSID, PASSWORD)
+    except OSError as error:
+        print(f'error is {error}')
+
+    # Esperar la conexión WiFi
+    max_attempts = 10
+    attempt = 0
+    while not wlan.isconnected() and attempt < max_attempts:
+        print('Intentando conectar a WiFi...')
+        time.sleep(1)
+        attempt += 1
+
+    if wlan.isconnected():
+        print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
+    else:
+        print('Error: No se pudo conectar a la red WiFi')
+        raise RuntimeError('No se pudo conectar a la red WiFi')
+
+    print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
 
 read_and_publish()
