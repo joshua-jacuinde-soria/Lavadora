@@ -28,6 +28,6 @@ Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por
 
 - `Pruebas.py`
 
-- `Ej()` :
+- `read_and_publish()` : Con esta función nos encargmos de llamar a las funciones encargadas de leer los datos que nos proporcionaran los sensores conectados a la Raspberry Pi Pico W, posterior a esto mediante la lineas de código: `client.publish(MQTT_TOPIC_[Topico al cual publicamos], str([dato a publicar]))`, hacemos la publicación del valor obtenido.
 
 ## Conexiones.
