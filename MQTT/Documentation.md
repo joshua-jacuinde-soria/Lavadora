@@ -10,11 +10,11 @@ La función de este programa es encargarse de leer los valores de los sensores q
 - `simple.py`: Es una biblioteca que usaremos para poder hacer más simple la implementación del protocolo MQTT.
 - `IoT MQTT Panel (Dashboard)`: Aplicación remota de Android para mostrar los valores mediante el protocolo MQTT en tiempo real.
 - `Main?`: Esta es nuestra la principal del programa, se encargará de ejecutar las funciones que leerán los valores que proporcionen los sensores del microocontrolador "Raspberry Pi Pico W", de conectarse a la red Wifi y de enviar los valores obtenidos al Broker Mosquitto.
-- `Main?`:
+- `Pruebas.py`: Es un documento en el cuál se están haciendo las pruebas necesarias para verificar el correcto funcionamiento del programa.
 
 ## Funcionamiento
 
-### Mosquitto
+#### Mosquitto
 
 1. Primero tendremos que seguir el proceso de instalación de la herramienta Mosquitto para poder usarla sin problemas.
 2. Nos ubicarememos en la carpeta que contiene el ejecutable de la aplicación por lo general en Windows se encuentra en la siguiente ruta: `"C:\Program Files\mosquitto"`.
@@ -23,6 +23,8 @@ La función de este programa es encargarse de leer los valores de los sensores q
 5. Ahora que hemos habilidato el Broker Mosquitto, podemos hacer subscripciones y publicaciones directamente desde Mosquitto o cualquier aplicación que se conecte al IP que estamos trabajando; también es necesario conectarse al Puerto en el cúal estamos trabajando (este caso 1833).
 
 Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por el IP en el que estemos trabajando, una vez hecho esto debemos configurar los dispositivos que queremos hacer subscripciones y publicaciones.
+
+#### Mosquitto
 
 El programa sigue estos pasos:
 
