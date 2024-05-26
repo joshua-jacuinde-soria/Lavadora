@@ -14,7 +14,7 @@ La función de este programa es encargarse de leer los valores de los sensores q
 
 ## Funcionamiento
 
-#### Mosquitto
+### Mosquitto
 
 1. Primero tendremos que seguir el proceso de instalación de la herramienta Mosquitto para poder usarla sin problemas.
 2. Nos ubicarememos en la carpeta que contiene el ejecutable de la aplicación por lo general en Windows se encuentra en la siguiente ruta: `"C:\Program Files\mosquitto"`.
