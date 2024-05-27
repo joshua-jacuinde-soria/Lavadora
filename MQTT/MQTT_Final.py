@@ -15,12 +15,15 @@ client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 def read_peso():
     # Aqui va todo lo relacionado al sensor de peso
+    return 0
 
 def read_2():
     # Aqui va todo lo relacionado al sensor 2
+    return 0
 
 def read_3():
     # Aqui va todo lo relacionado al sensor 3
+    return 0
 
 def read_and_publish():
     conecction_wifi()
@@ -33,23 +36,25 @@ def read_and_publish():
     blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
     while True:
-        temperature = read_temperature()
-        print('Luz_T: ', temperature)
-        client.publish(MQTT_TOPIC_luz, str(temperature))
+        peso = read_peso()
+        print('Luz_T: ', peso)
+        client.publish(MQTT_TOPIC_peso, str(peso))
 
-        #time.sleep(5)
-        DHT_T, DHT_H = read_DHTT22_Temp()
-        print('DHT1: ', DHT_T)
-        client.publish(MQTT_TOPIC_DHT1, str(DHT_T))
+        Sensor_2 = read_2()
+        print('DHT1: ', Sensor_2)
+        client.publish(MQTT_TOPIC_2, str(Sensor_2))
         
-        print('DHT2: ', DHT_H)
-        client.publish(MQTT_TOPIC_DHT2, str(DHT_H))
+        Sensor_3 = read_3()
+        print('DHT2: ', Sensor_3)
+        client.publish(MQTT_TOPIC_3, str(Sensor_3))
+        
+        # Tiempo de espera
         time.sleep(5)
 
         # Send sensor data to Blynk
-        blynk.virtual_write(0, temperature)  # virtual pin 1 for temperature
-        blynk.virtual_write(1, DHT_T)    # virtual pin 2 for humidity
-        blynk.virtual_write(3, DHT_H)   # virtual pin 3 for pressure
+        blynk.virtual_write(0, peso)  # virtual pin 0 for peso
+        blynk.virtual_write(1, Sensor_2)    # virtual pin 2 for Sensor 2
+        blynk.virtual_write(2, Sensor_3)   # virtual pin 3 for Sensor 3
 
         # Run Blynk
         blynk.run()
