@@ -21,3 +21,31 @@ def read_2():
 
 def read_3():
     # Aqui va todo lo relacionado al sensor 3
+
+def conecction_wifi()->None:
+    # Configuración de la red Wi-Fi
+    SSID = 'INFINITUM6832_2.4'
+    PASSWORD = 'XnCjzCT8id'
+    # Conectar a Wi-Fi
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    try:
+        wlan.connect(SSID, PASSWORD)
+    except OSError as error:
+        print(f'error is {error}')
+
+    # Esperar la conexión WiFi
+    max_attempts = 10
+    attempt = 0
+    while not wlan.isconnected() and attempt < max_attempts:
+        print('Intentando conectar a WiFi...')
+        time.sleep(1)
+        attempt += 1
+
+    if wlan.isconnected():
+        print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
+    else:
+        print('Error: No se pudo conectar a la red WiFi')
+        raise RuntimeError('No se pudo conectar a la red WiFi')
+
+    print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
