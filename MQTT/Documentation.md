@@ -13,6 +13,7 @@ La función de este programa es encargarse de leer los valores de los sensores q
 - `Main?`: Esta es nuestra la principal del programa, se encargará de ejecutar las funciones que leerán los valores que proporcionen los sensores del microocontrolador "Raspberry Pi Pico W", de conectarse a la red Wifi y de enviar los valores obtenidos al Broker Mosquitto.
 - `Pruebas.py`: Es un documento en el cuál se están haciendo las pruebas necesarias para verificar el correcto funcionamiento del programa.
 - `BlynkLib.py`: Es una biblioteca de Phyton que usaremos para poder conectar los datos que envie nuestro mictrocontrolador a la Web de Blynk.console.
+- `MQTT_Final.py` : Programa final con los cambios implementados.
 
 ## Funcionamiento
 
