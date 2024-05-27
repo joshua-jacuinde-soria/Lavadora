@@ -7,10 +7,12 @@ La función de este programa es encargarse de leer los valores de los sensores q
 ## Funciones y herramientas principales
 
 - `Mosquitto`: Eclipse Mosquitto es Broker MQTT un corredor de mensajes de código abierto (EPL/EDL) que implementa las versiones de protocolo MQTT 5.0, 3.1.1 y 3.1.
-- `simple.py`: Es una biblioteca que usaremos para poder hacer más simple la implementación del protocolo MQTT.
-- `IoT MQTT Panel (Dashboard)`: Aplicación remota de Android para mostrar los valores mediante el protocolo MQTT en tiempo real.
+- `simple.py`: Es una biblioteca de Phyton que usaremos para poder hacer más simple la implementación del protocolo MQTT.
+- `IoT MQTT Panel (Dashboard Móvil)`: Aplicación remota de Android para mostrar los valores enviados mediante el protocolo MQTT en tiempo real para visualizarlos de manera gráfica.
+- `Blynk.console (Dashboard Web)`: Aplicación de Web para mostrar los valores enviados desde nuestro microocontrolador en tiempo real para visualizarlos de manera gráfica.
 - `Main?`: Esta es nuestra la principal del programa, se encargará de ejecutar las funciones que leerán los valores que proporcionen los sensores del microocontrolador "Raspberry Pi Pico W", de conectarse a la red Wifi y de enviar los valores obtenidos al Broker Mosquitto.
 - `Pruebas.py`: Es un documento en el cuál se están haciendo las pruebas necesarias para verificar el correcto funcionamiento del programa.
+- `BlynkLib.py`: Es una biblioteca de Phyton que usaremos para poder conectar los datos que envie nuestro mictrocontrolador a la Web de Blynk.console.
 
 ## Funcionamiento
 
@@ -24,11 +26,17 @@ La función de este programa es encargarse de leer los valores de los sensores q
 
 Con el Broker habilitado solamente es cuestion de conectarnos al puerto 1833 por el IP en el que estemos trabajando, una vez hecho esto debemos configurar los dispositivos que queremos hacer subscripciones y publicaciones.
 
+#### Funcionamiento del programa
+
+El programa leera los valores que proporcionen los sensores que están conectados en la Raspberry Pi Pico W, enviando y publicando los mensajes al Broker Mosquitto al topico que se requiera. De aqui se conectará el dispositivo movil al Broker y leerá los datos publicados en el Broker, después de esto los mostrará de forma gráfica en la APP `IoT MQTT Panel (Dashboard Móvil)`. De la misma manera `Blynk.console (Dashboard Web)`, con la diferencia que la web no leerá los mensajes del Broker, sino que mediante la libreria ya implementadá leerá directamente los resultados envidados por las salidas directamente desde el programa sin necesidad de acceder al Broker.
+
 #### Funciones
 
 - `Pruebas.py`
 
 - `read_and_publish()` : Con esta función nos encargmos de llamar a las funciones encargadas de leer los datos que nos proporcionaran los sensores conectados a la Raspberry Pi Pico W, posterior a esto mediante la lineas de código: `client.publish(MQTT_TOPIC_[Topico al cual publicamos], str([dato a publicar]))`, hacemos la publicación del valor obtenido.
+
+- `conecction_wifi()` : Con esta función vamos a conectar la Raspberry Pi Pico W a la red que queramos usar para trabajar con la conexion WiFi.
 
 ## Conexiones.
 - `No aplica` : Para código no se requieren conexiones adicionales, únicamente que el microocontrolador que estamos usando tenga conexión WiFi, de lo contrario no podra conectarse al Broker Mosquitto.
