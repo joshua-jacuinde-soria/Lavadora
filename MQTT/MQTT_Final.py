@@ -5,6 +5,10 @@ from machine import Pin, ADC
 from simple import *
 import dht
 import BlynkLib
+from machine import Pin
+from onewire import OneWire
+from ds18x20 import DS18X20
+import time
 
 # Configuración del broker MQTT
 MQTT_SERVER = '192.168.1.74'
@@ -13,6 +17,7 @@ MQTT_PORT = 1883
 MQTT_TOPIC_ultra_L = 'sensors/ultraL'
 MQTT_TOPIC_ultra_D = 'sensors/ultraD'
 MQTT_TOPIC_agua = 'sensors/agua'
+MQTT_TOPIC_tem = 'sensors/temp'
 client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 def read_peso():
@@ -46,6 +51,17 @@ def read_ultra():
     else:
         level = 4
     return level, distance
+
+class TempSensor:
+    def __init__(self, pin: int) -> None:
+        self.pin = Pin(pin)
+        self.ds_sensor: DS18X20 = DS18X20(OneWire(self.pin))
+        self.roms = self.ds_sensor.scan()
+        print("Found DS devices: ", self.roms)
+
+    def get_temp(self) -> float:
+        self.ds_sensor.convert_temp()
+        return self.ds_sensor.read_temp(self.roms[0])
 
 def read_agua():
     # Aqui va todo lo relacionado al sensor del agua
@@ -81,6 +97,11 @@ def read_and_publish():
         agua = read_agua()
         print('Agua: ', agua)
         client.publish(MQTT_TOPIC_agua, str(agua))
+
+        test = TempSensor(15)
+        temp = test.get_temp()
+        print('Temp: ', temp)
+        client.publish(MQTT_TOPIC_tem, str(temp))
         
         # Tiempo de espera
         time.sleep(5)
@@ -89,7 +110,8 @@ def read_and_publish():
         #blynk.virtual_write(0, peso)  # virtual pin 0 for peso
         blynk.virtual_write(1, level)    # virtual pin 1 for nivel
         blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
-        blynk.virtual_write(3, agua)   # virtual pin 2 for distancia
+        blynk.virtual_write(3, agua)   # virtual pin 3 for agua
+        blynk.virtual_write(3, temp)   # virtual pin 2 for temp
 
         # Run Blynk
         blynk.run()
