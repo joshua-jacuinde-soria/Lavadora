@@ -6,25 +6,29 @@
 #include "../ciclo-de-lavado/cicloLavado.h"
 #include "../encendido-apagado/encendidoApagado.h"
 #include "../Temporizador/tempotizadorBoton.h"
-#include "../tipo_de_lavado/tipo_de_lavado.h"
+#include "../tipo_de_lavado/tipo_lavado.h"
 #include "../NivelAgua/NivelAgua.h"
 #include "../zumbador/zumbador.h"
+#include "../uart/uart.h"
 
 int main(){
-
-    inicio_ciclolavado();
+    sleep_ms(3000);
+    printf("Inicio del programa\n");
+    inicio_cicloLavado();
     inicio_encendidoApagado();
     inicio_nivelagua();
-    inicio_tipolavado();
+    declara_inicializa();
     inicio_visualizador();
     inicio_zumbador();
+    inicio_uart();
     int ciclo;
     int pausa_;
 
     while (true)
     {
+        printf("Haz inicializado los pines\n");
 
-        if(encendido_Apagado()){
+        if(encendidoApagado()){
             nivel_agua();
             ciclo = cicloLavado();
 
@@ -58,8 +62,8 @@ int main(){
         else
         {
             inicio_nivelagua();
-            inicio_tipolavado();
-            inicio_ciclolavado();
+            declara_inicializa();
+            inicio_cicloLavado();
             inicio_visualizador();
         }
         

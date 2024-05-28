@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "tipo_de_lavado.h"
+#include "tipo_lavado.h"
 
 #define LED_lavar  8           // Led para lavar
 #define LED_enjuagar  9        // Led para enjuagar

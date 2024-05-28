@@ -7,7 +7,8 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-// Descomentar linea -> #include "zumbador.h"
+#include "../zumbador/zumbador.h"
+#include "../uart/uart.h"
 
 /* Aquí se definen constantes para los números de pin de 
 los GPIOs a los que están conectados los LEDs y el botón. */ 
@@ -57,6 +58,8 @@ int tipo_de_lavado_(){
             {
                 led_state = 0;
             }
+            // Enviar el comando al receptor
+            send_cmd(led_state, 0x6b);
             gpio_put(LED_lavar, (led_state == 0 || led_state == 3 || led_state == 4 || led_state == 6));
             gpio_put(LED_enjuagar, led_state == 1 || led_state == 3 || led_state == 5 || led_state == 6);
             gpio_put(LED_centrifugar, led_state == 2 || led_state == 4 || led_state == 5 || led_state == 6);
