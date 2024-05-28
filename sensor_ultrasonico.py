@@ -3,7 +3,7 @@ import time
 
 trig = Pin(17, Pin.OUT)
 echo = Pin(16, Pin.IN, Pin.PULL_DOWN)
-while True:
+def nivel():
      trig.value(0)
      time.sleep(0.1)
      trig.value(1)
@@ -16,5 +16,6 @@ while True:
      pulse_duration = float(pulse_end) - float(pulse_start)
      distance = pulse_duration * 17165 / 1000000
      distance = round(distance, 0)
-     print ('Distance:',"{:.0f}".format(distance),'cm')
-     time.sleep(1)
+     
+def main():
+     nivel()
