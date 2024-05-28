@@ -12,14 +12,15 @@ MQTT_PORT = 1883
 #MQTT_TOPIC_peso = 'sensors/peso'
 MQTT_TOPIC_ultra_L = 'sensors/ultraL'
 MQTT_TOPIC_ultra_D = 'sensors/ultraD'
-#MQTT_TOPIC_3 = 'sensors/3'
+MQTT_TOPIC_agua = 'sensors/agua'
 client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 def read_peso():
     # Aqui va todo lo relacionado al sensor de peso
     return 0
 
-def ultra():
+def read_ultra():
+    # Aqui va todo lo relacionado al sesnor ultrasonico
     trig = Pin(17, Pin.OUT)
     echo = Pin(16, Pin.IN, Pin.PULL_DOWN)
     trig.value(0)
@@ -46,8 +47,8 @@ def ultra():
         level = 4
     return level, distance
 
-def read_2():
-    # Aqui va todo lo relacionado al sensor 2
+def read_agua():
+    # Aqui va todo lo relacionado al sensor del agua
     return 0
 
 def read_3():
@@ -61,6 +62,7 @@ def read_and_publish():
 
     # Blynk authentication token
     BLYNK_AUTH = "M0qTFY3EuM2lxZAFauuEvKw3W_SWSUZt"
+    
     # Initialize Blynk
     blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
@@ -69,16 +71,16 @@ def read_and_publish():
         print('Peso: ', peso)
         client.publish(MQTT_TOPIC_peso, str(peso))"""
 
-        level, distance = ultra()
+        level, distance = read_ultra()
         print('Nivel: ', level)
         client.publish(MQTT_TOPIC_ultra_L, str(level))
 
         print('Distancia: ', distance)
         client.publish(MQTT_TOPIC_ultra_D, str(distance))
         
-        """Sensor_3 = read_3()
-        print('DHT2: ', Sensor_3)
-        client.publish(MQTT_TOPIC_3, str(Sensor_3))"""
+        agua = read_agua()
+        print('DHT2: ', agua)
+        client.publish(MQTT_TOPIC_agua, str(agua))
         
         # Tiempo de espera
         time.sleep(5)
@@ -87,6 +89,7 @@ def read_and_publish():
         #blynk.virtual_write(0, peso)  # virtual pin 0 for peso
         blynk.virtual_write(1, level)    # virtual pin 1 for nivel
         blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
+        blynk.virtual_write(3, agua)   # virtual pin 2 for distancia
 
         # Run Blynk
         blynk.run()
