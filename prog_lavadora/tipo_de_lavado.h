@@ -54,13 +54,14 @@ int tipo_de_lavado_(){
     
         if (!gpio_get(BOTON_2)) {
             led_state_2++;
+            send_cmd(led_state_2, 0x6b);
             zumbador(1);
             
             if (led_state_2 > 6)
             {
                 led_state_2 = 0;
+                send_cmd(led_state_2, 0x6b);
             }
-            send_cmd(led_state_2, 0x6b);
             gpio_put(LED_lavar, (led_state_2 == 0 || led_state_2 == 3 || led_state_2 == 4 || led_state_2 == 6));
             gpio_put(LED_enjuagar, led_state_2 == 1 || led_state_2 == 3 || led_state_2 == 5 || led_state_2 == 6);
             gpio_put(LED_centrifugar, led_state_2 == 2 || led_state_2 == 4 || led_state_2 == 5 || led_state_2 == 6);

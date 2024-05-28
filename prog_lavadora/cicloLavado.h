@@ -34,17 +34,18 @@ int cicloLavado() {
     {
         cycleStatus++;  
         zumbador(1);
+        send_cmd(cycleStatus, 0x65);
     }
     
     if (cycleStatus > 2) {
         cycleStatus = 0;
+        send_cmd(cycleStatus, 0x65);
     }
     // Encender el LED correspondiente al ciclo de lavado
     gpio_put(LED_SUAVE, cycleStatus == 0);
     gpio_put(LED_PESADO, cycleStatus == 1);
     gpio_put(LED_RAPIDO, cycleStatus == 2);
 
-    send_cmd(cycleStatus, 0x65);
 
     return cycleStatus;
 }

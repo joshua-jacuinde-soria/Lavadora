@@ -87,11 +87,13 @@ int pausa_vis(){
     if (!gpio_get(BUTTON_GPIO_7seg))
     {
         estado_2 ++;
+        send_cmd(estado_2, 0x63);
         zumbador(1);
     }
-    if (estado_2 > 2)
+    if (estado_2 > 2){
         estado_2 = 1;
-    send_cmd(estado_2, 0x63);
+        send_cmd(estado_2, 0x63);
+    }
     
     return estado_2;
 }

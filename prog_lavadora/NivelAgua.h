@@ -61,12 +61,13 @@ void inicio_nivelagua(){
 void nivel_agua() {
         if (!gpio_get(BOTON_P)) {
             led_state++;
+            send_cmd(led_state, 0x68);
             zumbador(1);
             if (led_state > 2)
             {
                 led_state = 0;
+                send_cmd(led_state, 0x68);
             }
-            send_cmd(led_state, 0x68);
             // gpio_put(LED_Bajo, (led_state == 0));
             // gpio_put(LED_Medio, (led_state == 1));
             // gpio_put(LED_Alto, (led_state == 2));

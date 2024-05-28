@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-add_executable(Main
+add_executable(LAVADORA
     main.c
     cicloLavado.h
     encendidoApagado.h
@@ -11,9 +11,9 @@ add_executable(Main
     uart.h
 )
 
-pico_enable_stdio_usb(Main 1)
-pico_enable_stdio_uart(Main 0)
+pico_enable_stdio_usb(LAVADORA 1)
+pico_enable_stdio_uart(LAVADORA 0)
 
-pico_add_extra_outputs(Main)
+pico_add_extra_outputs(LAVADORA)
 
-target_link_libraries(Main pico_stdlib)
+target_link_libraries(LAVADORA pico_stdlib)

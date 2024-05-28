@@ -18,11 +18,11 @@ int encendido_Apagado () {
     if (!gpio_get(BOTON_I))
     {
         estado = !estado;
+        send_cmd(estado, 0x61);
         // Encender o apagar el led_IO de acuerdo al estado
         gpio_put(LED_IO, estado);
         zumbador(1);
     }
-    send_cmd(estado, 0x61);
     // Retornar el estado actualizado
     return estado;
 }
