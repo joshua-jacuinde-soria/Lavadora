@@ -5,10 +5,11 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include <stdbool.h>
+#include "uart.h"
 
 #define FIRST_GPIO_DISPLAY1 12 // Primer GPIO para el primer display
 #define FIRST_GPIO_DISPLAY2 20 // Primer GPIO para el segundo display
-#define BUTTON_GPIO 19
+#define BUTTON_GPIO_7seg 19
 
 int decena;
 int unidad = 0;
@@ -76,20 +77,21 @@ void inicio_visualizador(){
         gpio_set_dir(gpio, GPIO_OUT);
     }
 
-    gpio_init(BUTTON_GPIO);
-    gpio_set_dir(BUTTON_GPIO, GPIO_IN);
-    gpio_pull_up(BUTTON_GPIO);
+    gpio_init(BUTTON_GPIO_7seg);
+    gpio_set_dir(BUTTON_GPIO_7seg, GPIO_IN);
+    gpio_pull_up(BUTTON_GPIO_7seg);
     estado_2 = 0;
 }
 
 int pausa_vis(){
-    if (!gpio_get(BUTTON_GPIO))
+    if (!gpio_get(BUTTON_GPIO_7seg))
     {
         estado_2 ++;
         zumbador(1);
     }
     if (estado_2 > 2)
         estado_2 = 1;
+    send_cmd(estado_2, 0x63);
     
     return estado_2;
 }

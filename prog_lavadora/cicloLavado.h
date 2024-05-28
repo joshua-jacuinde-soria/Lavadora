@@ -1,5 +1,6 @@
 #include "hardware/gpio.h"
 #include "zumbador.h"
+#include "uart.h"
 
 // Definir  los pines de los LEDs
 #define LED_SUAVE 4
@@ -42,6 +43,8 @@ int cicloLavado() {
     gpio_put(LED_SUAVE, cycleStatus == 0);
     gpio_put(LED_PESADO, cycleStatus == 1);
     gpio_put(LED_RAPIDO, cycleStatus == 2);
+
+    send_cmd(cycleStatus, 0x65);
 
     return cycleStatus;
 }

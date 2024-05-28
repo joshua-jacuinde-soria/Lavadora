@@ -9,9 +9,10 @@
 #include "tipo_de_lavado.h"
 #include "NivelAgua.h"
 #include "zumbador.h"
+#include "uart.h"
 
 int main(){
-
+    inicio_uart();
     inicio_ciclolavado();
     inicio_encendidoApagado();
     inicio_nivelagua();
