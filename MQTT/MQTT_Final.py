@@ -14,10 +14,10 @@ import time
 MQTT_SERVER = '192.168.1.74'
 MQTT_PORT = 1883
 #MQTT_TOPIC_peso = 'sensors/peso'
-MQTT_TOPIC_ultra_L = 'sensors/ultraL'
-MQTT_TOPIC_ultra_D = 'sensors/ultraD'
-MQTT_TOPIC_agua = 'sensors/agua'
-MQTT_TOPIC_tem = 'sensors/temp'
+MQTT_TOPIC_ultra_L = 'sensors/ultraL' #14 y 15
+MQTT_TOPIC_ultra_D = 'sensors/ultraD' #14 y 15
+#MQTT_TOPIC_agua = 'sensors/agua'
+MQTT_TOPIC_tem = 'sensors/temp' # 16
 client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 def read_peso():
@@ -63,14 +63,6 @@ class TempSensor:
         self.ds_sensor.convert_temp()
         return self.ds_sensor.read_temp(self.roms[0])
 
-def read_agua():
-    # Aqui va todo lo relacionado al sensor del agua
-    return 0
-
-def read_3():
-    # Aqui va todo lo relacionado al sensor 3
-    return 0
-
 def read_and_publish():
     conecction_wifi()
     # Conectar al broker MQTT
@@ -94,11 +86,11 @@ def read_and_publish():
         print('Distancia: ', distance)
         client.publish(MQTT_TOPIC_ultra_D, str(distance))
         
-        agua = read_agua()
+        """agua = read_agua()
         print('Agua: ', agua)
         client.publish(MQTT_TOPIC_agua, str(agua))
-
-        test = TempSensor(15)
+        """
+        test = TempSensor(16)
         temp = test.get_temp()
         print('Temp: ', temp)
         client.publish(MQTT_TOPIC_tem, str(temp))
@@ -110,8 +102,8 @@ def read_and_publish():
         #blynk.virtual_write(0, peso)  # virtual pin 0 for peso
         blynk.virtual_write(1, level)    # virtual pin 1 for nivel
         blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
-        blynk.virtual_write(3, agua)   # virtual pin 3 for agua
-        blynk.virtual_write(3, temp)   # virtual pin 2 for temp
+        blynk.virtual_write(3, temp)   # virtual pin 3 for temp
+        #blynk.virtual_write(4, agua)   # virtual pin 4 for agua
 
         # Run Blynk
         blynk.run()
