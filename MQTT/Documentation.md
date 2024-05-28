@@ -33,7 +33,7 @@ El programa leera los valores que proporcionen los sensores que están conectado
 
 #### Funciones
 
-- `Pruebas.py`
+- `Pruebas.py` : Aqui se realizan algunas pruebas para comporbar el funcionameinto del programa.
 
 - `read_and_publish()` : Con esta función nos encargmos de llamar a las funciones encargadas de leer los datos que nos proporcionaran los sensores conectados a la Raspberry Pi Pico W, posterior a esto mediante la lineas de código: `client.publish(MQTT_TOPIC_[Topico al cual publicamos], str([dato a publicar]))`, hacemos la publicación del valor obtenido.
 
