@@ -79,7 +79,7 @@ def read_and_publish():
         client.publish(MQTT_TOPIC_ultra_D, str(distance))
         
         agua = read_agua()
-        print('DHT2: ', agua)
+        print('Agua: ', agua)
         client.publish(MQTT_TOPIC_agua, str(agua))
         
         # Tiempo de espera
@@ -96,8 +96,10 @@ def read_and_publish():
 
 def conecction_wifi()->None:
     # Configuración de la red Wi-Fi
-    SSID = 'INFINITUM6832_2.4'
-    PASSWORD = 'XnCjzCT8id'
+    #SSID = 'INFINITUM6832_2.4'
+    #PASSWORD = 'XnCjzCT8id'
+    SSID = 'labred'
+    PASSWORD = 'labred2017'
     # Conectar a Wi-Fi
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
