@@ -17,9 +17,10 @@ const uint LED_lavar = 8;           // Led para lavar
 const uint LED_enjuagar = 9;        // Led para enjuagar
 const uint LED_centrifugar = 10;    // Led para centrifugar
 const uint BOTON_2 = 11;              // Botón de acción
+int led_state = 6;
 
 void declara_inicializa(){
-    stdio_init_all();
+    // stdio_init_all();
 
     /* Cada llamada a gpio_init() inicializa un pin GPIO. 
     Esta función debe ser llamada en cada pin antes de 
@@ -47,7 +48,6 @@ void declara_inicializa(){
 }
 
 int tipo_de_lavado_(){
-    int led_state = 6;
     
     //while (true) {
         if (!gpio_get(BOTON_2)) {

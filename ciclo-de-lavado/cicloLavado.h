@@ -13,6 +13,26 @@
 
 int cycleStatus;
 
+int cicloLavado() {
+    if(!gpio_get(BOTON_CICLO)) {
+        cycleStatus++;
+        if (cycleStatus > 2) {
+            cycleStatus = 0;
+        }
+        // Enviar el comando al receptor
+        send_cmd(cycleStatus, 0x65);
+        // ZUMBADOR
+        zumbador(1);
+    }
+
+    // Encender el LED correspondiente al ciclo de lavado
+    gpio_put(LED_SUAVE, cycleStatus == 0);
+    gpio_put(LED_PESADO, cycleStatus == 1);
+    gpio_put(LED_RAPIDO, cycleStatus == 2);
+
+    return cycleStatus;
+}
+
 void inicio_cicloLavado() {
     // Inicializar los pines de los LEDs
     gpio_init(LED_SUAVE);
@@ -33,27 +53,6 @@ void inicio_cicloLavado() {
     gpio_put(LED_RAPIDO, 0);
 
     cycleStatus = -1;
-}
-
-int cicloLavado() {
-    // Cuando el boton_CICLO sea presionado
-    if (!gpio_get(BOTON_CICLO)) {
-        cycleStatus++;
-        zumbador(1);
-    }
-    // Si el ciclo de lavado es mayor a 2, reiniciar el ciclo
-    if (cycleStatus > 2) {
-        cycleStatus = 0;
-    }
-    // Enviar el comando al receptor
-    send_cmd(cycleStatus, 0x65);
-
-    // Encender el LED correspondiente al ciclo de lavado
-    gpio_put(LED_SUAVE, cycleStatus == 0);
-    gpio_put(LED_PESADO, cycleStatus == 1);
-    gpio_put(LED_RAPIDO, cycleStatus == 2);
-
-    return cycleStatus;
 }
 
 #endif

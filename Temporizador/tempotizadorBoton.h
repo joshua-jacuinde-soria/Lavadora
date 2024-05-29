@@ -88,12 +88,13 @@ int pausa_vis(){
     {
         estado_2 ++;
         zumbador(1);
-    }
-    if (estado_2 > 2)
-        estado_2 = 1;
+        
+        if (estado_2 > 2)
+            estado_2 = 1;
 
-    // Enviar el comando al receptor
-    send_cmd(estado_2, 0x63);
+        // Enviar el comando al receptor
+        send_cmd(estado_2, 0x63);
+    }
     
     return estado_2;
 }

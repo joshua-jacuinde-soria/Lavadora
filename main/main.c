@@ -12,8 +12,8 @@
 #include "../uart/uart.h"
 
 int main(){
-    sleep_ms(3000);
-    printf("Inicio del programa\n");
+    stdio_init_all();
+
     inicio_cicloLavado();
     inicio_encendidoApagado();
     inicio_nivelagua();
@@ -26,8 +26,6 @@ int main(){
 
     while (true)
     {
-        printf("Haz inicializado los pines\n");
-
         if(encendidoApagado()){
             nivel_agua();
             ciclo = cicloLavado();
