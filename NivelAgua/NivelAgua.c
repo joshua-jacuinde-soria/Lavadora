@@ -10,7 +10,7 @@
 //Se importan las librerias a utilizar
 //#include <stdio.h>
 //#include "pico/stdlib.h"
-//#include "hardware/gpio.h"
+#include "hardware/gpio.h"
 //#include "zumbador.h"
 #ifndef THIS_s
 #define THIS_s
