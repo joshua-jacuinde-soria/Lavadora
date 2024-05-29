@@ -9,15 +9,14 @@ from machine import Pin
 from onewire import OneWire
 from ds18x20 import DS18X20
 import time
+from python import shared_obj
 
 # Configuración del broker MQTT
-#MQTT_SERVER = '192.168.1.74'
-MQTT_SERVER = '172.30.5.42'
+MQTT_SERVER = '172.18.63.63'
 MQTT_PORT = 1883
 #MQTT_TOPIC_peso = 'sensors/peso'
 MQTT_TOPIC_ultra_L = 'sensors/ultraL' #14 y 15
 MQTT_TOPIC_ultra_D = 'sensors/ultraD' #14 y 15
-#MQTT_TOPIC_agua = 'sensors/agua'
 MQTT_TOPIC_tem = 'sensors/temp' # 16
 client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
@@ -89,18 +88,16 @@ def read_and_publish():
         print('Temp: ', temp)
         client.publish(MQTT_TOPIC_tem, str(temp))
 
+        # Tiempo de espera para lectura de datos
+        time.sleep(5)
+
         # Lectura de Datos de la Raspberry 
         # blynk.virtual_write(7, 2 )  # virtual pin 7 for 'Nivel de Leds' 
-        blynk.virtual_write(8, 2 )  # virtual pin 8 for 'Pausa' 
-        blynk.virtual_write(9, 2 )  # virtual pin 9 for 'Encendido/Apagado' 
-        blynk.virtual_write(10, 2 )  # virtual pin 10 for 'Ciclo de lavado'
-        blynk.virtual_write(11, 2 )  # virtual pin 11 for 'Nivel de Agua'
-        blynk.virtual_write(12, 2 )  # virtual pin 12 for 'Tipo de lavado'
-
-
-        
-        # Tiempo de espera
-        time.sleep(5)
+        blynk.virtual_write(8, shared_obj.state_pausa)  # virtual pin 8 for 'Pausa' 
+        blynk.virtual_write(9, shared_obj.state_encendido)  # virtual pin 9 for 'Encendido/Apagado' 
+        blynk.virtual_write(10, shared_obj.state_ciclo_lavado)  # virtual pin 10 for 'Ciclo de lavado'
+        blynk.virtual_write(11, shared_obj.state_nivel_agua)  # virtual pin 11 for 'Nivel de Agua'
+        blynk.virtual_write(12, shared_obj.state_tipo_lavado)  # virtual pin 12 for 'Tipo de lavado'
 
         # Send sensor data to Blynk
         #blynk.virtual_write(0, peso)  # virtual pin 0 for peso
@@ -116,8 +113,8 @@ def conecction_wifi()->None:
     # Configuración de la red Wi-Fi
     #SSID = 'INFINITUM6832_2.4'
     #PASSWORD = 'XnCjzCT8id'
-    SSID = 'labred'
-    PASSWORD = 'labred2017'
+    SSID = '#WUAMC'
+    PASSWORD = 'wificua06'
 
     # Conectar a Wi-Fi
     wlan = network.WLAN(network.STA_IF)
