@@ -11,7 +11,8 @@ from ds18x20 import DS18X20
 import time
 
 # Configuración del broker MQTT
-MQTT_SERVER = '192.168.1.74'
+#MQTT_SERVER = '192.168.1.74'
+MQTT_SERVER = '172.30.5.42'
 MQTT_PORT = 1883
 #MQTT_TOPIC_peso = 'sensors/peso'
 MQTT_TOPIC_ultra_L = 'sensors/ultraL' #14 y 15
@@ -75,34 +76,37 @@ def read_and_publish():
     blynk = BlynkLib.Blynk(BLYNK_AUTH)
 
     while True:
-        """peso = read_peso()
-        print('Peso: ', peso)
-        client.publish(MQTT_TOPIC_peso, str(peso))"""
 
-        level, distance = read_ultra()
+        level, distance = 1, 2#read_ultra()
         print('Nivel: ', level)
         client.publish(MQTT_TOPIC_ultra_L, str(level))
 
         print('Distancia: ', distance)
         client.publish(MQTT_TOPIC_ultra_D, str(distance))
         
-        """agua = read_agua()
-        print('Agua: ', agua)
-        client.publish(MQTT_TOPIC_agua, str(agua))
-        """
-        test = TempSensor(16)
-        temp = test.get_temp()
+        # Descomentar test = TempSensor(16)
+        temp = 3 #test.get_temp()
         print('Temp: ', temp)
         client.publish(MQTT_TOPIC_tem, str(temp))
+
+        # Lectura de Datos de la Raspberry 
+        # blynk.virtual_write(7, 2 )  # virtual pin 7 for 'Nivel de Leds' 
+        blynk.virtual_write(8, 2 )  # virtual pin 8 for 'Pausa' 
+        blynk.virtual_write(9, 2 )  # virtual pin 9 for 'Encendido/Apagado' 
+        blynk.virtual_write(10, 2 )  # virtual pin 10 for 'Ciclo de lavado'
+        blynk.virtual_write(11, 2 )  # virtual pin 11 for 'Nivel de Agua'
+        blynk.virtual_write(12, 2 )  # virtual pin 12 for 'Tipo de lavado'
+
+
         
         # Tiempo de espera
         time.sleep(5)
 
         # Send sensor data to Blynk
         #blynk.virtual_write(0, peso)  # virtual pin 0 for peso
-        blynk.virtual_write(1, level)    # virtual pin 1 for nivel
-        blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
-        blynk.virtual_write(3, temp)   # virtual pin 3 for temp
+        #blynk.virtual_write(1, level)    # virtual pin 1 for nivel
+        #blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
+        #blynk.virtual_write(3, temp)   # virtual pin 3 for temp
         #blynk.virtual_write(4, agua)   # virtual pin 4 for agua
 
         # Run Blynk
@@ -114,6 +118,7 @@ def conecction_wifi()->None:
     #PASSWORD = 'XnCjzCT8id'
     SSID = 'labred'
     PASSWORD = 'labred2017'
+
     # Conectar a Wi-Fi
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
