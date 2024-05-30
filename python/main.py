@@ -2,12 +2,7 @@ from machine import UART, Pin, I2C
 from utime import sleep
 from ssd1306 import SSD1306_I2C
 import shared_obj
-
-def init_leds() -> None:
-    """Function that will initialize the leds.
-    """
-    for led in shared_obj.nivel_leds:
-        Pin(led, Pin.OUT).value(0) # Turn off the led after initialization
+from MQTT_Final import init_dashboard, print_and_publish
 
 def nivel_agua(state: int) -> None:
     """Function that will update the leds based on the water level.
@@ -16,17 +11,27 @@ def nivel_agua(state: int) -> None:
         state (int): Water level state.
     """
     if state == 0:
-        shared_obj.nivel_leds[0] = 1
-        shared_obj.nivel_leds[1] = 0
-        shared_obj.nivel_leds[2] = 0
+        print("Encendiendo led 1")
+        shared_obj.led_1.value(1)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(0)
     elif state == 1:
-        shared_obj.nivel_leds[0] = 0
-        shared_obj.nivel_leds[1] = 1
-        shared_obj.nivel_leds[2] = 0
+        print("Encendiendo led 2")
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(1)
+        shared_obj.led_3.value(0)
     else:
-        shared_obj.nivel_leds[0] = 0
-        shared_obj.nivel_leds[1] = 0
-        shared_obj.nivel_leds[2] = 1
+        print("Encendiendo led 3")
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(1)
+    
+def verificar_encendido() -> None:
+    if shared_obj.state_encendido == False:
+    # Apaga todos los leds
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(0)
     
     
 def state_machine(cmd_val: int) -> None:
@@ -55,8 +60,9 @@ def state_machine(cmd_val: int) -> None:
 def main() -> None:
     """Main function for the washing machine. This function will initialize the UART and read the commands from the UART.
     """
-    # Before starting the state machine, we need to initialize the leds
-    init_leds()
+    # init Dhasboard
+    blynk = init_dashboard()
+    print("Sali del init")
     # Initialize the UART
     uart = UART(0, baudrate=9600, tx=Pin(0), rx=Pin(1))
     while True:
@@ -71,7 +77,13 @@ def main() -> None:
                 print("Unknown error")
                 print(cmd)
             else:
+                print("Command received: ", cmd_val)
+                verificar_encendido()
                 state_machine(cmd_val)
+        # Si no hay que leer datos de la Raspberry
+        print_and_publish(blynk)
+        sleep(0.1)
+        continue
 
-
-main()
+if __name__ == "__main__":
+    main()

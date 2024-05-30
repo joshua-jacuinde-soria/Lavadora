@@ -2,7 +2,7 @@ import network
 import time
 from time import sleep, sleep_us, ticks_us
 from machine import Pin, ADC
-from simple import *
+# from simple import *
 import dht
 import BlynkLib
 from machine import Pin
@@ -12,24 +12,23 @@ import time
 import shared_obj
 from hx711 import HX711
 
-#  Configuración de pines del peso
-DOUT_PIN_NUMBER = 20  # Número de pin del HX711 (GP14)
-SCK_PIN_NUMBER = 21   # Número de pin del reloj del HX711 (GP15)
-BUTTON_PIN_NUMBER = 22  # Número de pin del botón (GP16)
+DOUT_PIN_NUMBER = 14  # Número de pin del HX711 (GP14)
+SCK_PIN_NUMBER = 15   # Número de pin del reloj del HX711 (GP15)
 
 # Configuración del sensor HX711
 hx = HX711(d_out=DOUT_PIN_NUMBER, pd_sck=SCK_PIN_NUMBER)
 
 # Ajuste manual de las lecturas del sensor (ajustar según sea necesario)
-SENSOR_OFFSET = 0  # Compensación de offset
-SENSOR_SCALE = 1  # Factor de escala
+SENSOR_OFFSET = 0 # Compensación de offset
+SENSOR_SCALE = 2  # Factor de escala
 
 # Umbral para el nivel bajo
 UMBRAL_BAJO = 500
 
 def adjust_reading(raw_reading):
-    #Ajusta manualmente la lectura del sensor.    
-    return (raw_reading + SENSOR_OFFSET) * SENSOR_SCALE
+    # Ajusta manualmente la lectura del sensor.
+    #  return (raw_reading + SENSOR_OFFSET) * SENSOR_SCALE
+   return raw_reading
 
 def read_weight():
     #Lee el peso del sensor HX711 y lo devuelve.
@@ -44,12 +43,12 @@ MQTT_PORT = 1883
 MQTT_TOPIC_ultra_L = 'sensors/ultraL' #14 y 15
 MQTT_TOPIC_ultra_D = 'sensors/ultraD' #14 y 15
 MQTT_TOPIC_tem = 'sensors/temp' # 16
-client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
+# client = MQTTClient('Raspberrry_Pi_Pico_W', MQTT_SERVER, port=MQTT_PORT)
 
 def read_ultra():
     # Aqui va todo lo relacionado al sesnor ultrasonico
-    trig = Pin(15, Pin.OUT)
-    echo = Pin(14, Pin.IN, Pin.PULL_DOWN)
+    trig = Pin(6, Pin.OUT)
+    echo = Pin(7, Pin.IN, Pin.PULL_DOWN)
     trig.value(0)
     sleep(0.1)
     trig.value(1)
@@ -89,6 +88,7 @@ def init_dashboard():
     conecction_wifi()
     BLYNK_AUTH = "yxQDgTper1Ziq-0XIJS6VNLbvvEofdNi"
     blynk = BlynkLib.Blynk(BLYNK_AUTH)
+    return blynk
     
 def print_and_publish(blynk: BlynkLib.Blynk):
     level, distance = read_ultra() #read_ultra()
@@ -105,7 +105,6 @@ def print_and_publish(blynk: BlynkLib.Blynk):
 
     # agua = 4
     # Tiempo de espera para lectura de datos
-    time.sleep(5)
 
     # Lectura de Datos de la Raspberry 
     # blynk.virtual_write(7, 2 )  # virtual pin 7 for 'Nivel de Leds' 
@@ -120,16 +119,20 @@ def print_and_publish(blynk: BlynkLib.Blynk):
         encendido = 'Pausa'
 
     # Prueba de Impresiones:
-    print('Pausa: ', pausa)
-    print('Encendido: ', encendido)
-    print('Ciclo de lavado: ', shared_obj.state_ciclo_lavado)
-    print('Nivel de agua: ', shared_obj.state_nivel_agua)
-    print('Tipo de lavado: ', shared_obj.state_tipo_lavado)
-    print('Nivel: ', level)
-    print('Distancia: ', distance)
-    print('Peso: ', read_weight)
+    # print('Pausa: ', pausa)
+    # print('Encendido: ', encendido)
+    # print('Ciclo de lavado: ', shared_obj.state_ciclo_lavado)
+    # print('Nivel de agua: ', shared_obj.state_nivel_agua)
+    # print('Tipo de lavado: ', shared_obj.state_tipo_lavado)
+    # print('Nivel: ', level)
+    # print('Distancia: ', distance)
+    # print('Peso: ', read_weight())
+    
+    weight = read_weight()
+    
+    print('Peso: ', weight)
 
-    blynk.virtual_write(0, read_weight)    # virtual pin 0 for peso
+    blynk.virtual_write(0, weight)    # virtual pin 0 for peso
     #blynk.virtual_write(1, level)    # virtual pin 1 for nivel
     blynk.virtual_write(2, distance)   # virtual pin 2 for distancia
     #blynk.virtual_write(3, temp)   # virtual pin 3 for temp 
@@ -170,8 +173,8 @@ def conecction_wifi()->None:
     # Configuración de la red Wi-Fi
     #SSID = 'INFINITUM6832_2.4'
     #PASSWORD = 'XnCjzCT8id'
-    SSID = '#WUAMC'
-    PASSWORD = 'wificua6'
+    SSID = 'labred'
+    PASSWORD = 'labred2017'
 
     # Conectar a Wi-Fi
     wlan = network.WLAN(network.STA_IF)
@@ -182,7 +185,7 @@ def conecction_wifi()->None:
         print(f'error is {error}')
 
     # Esperar la conexión WiFi
-    max_attempts = 10
+    max_attempts = 100
     attempt = 0
     while not wlan.isconnected() and attempt < max_attempts:
         print('Intentando conectar a WiFi...')
@@ -196,6 +199,3 @@ def conecction_wifi()->None:
         raise RuntimeError('No se pudo conectar a la red WiFi')
 
     print('Conexión WiFi establecida, IP:', wlan.ifconfig()[0])
-
-# Ojito aa la siguiente función, ver si se puede modificar
-read_and_publish()
