@@ -1,3 +1,5 @@
+from machine import Pin
+
 map_cmd = {
     0x61: False,
     0x62: True,
@@ -29,3 +31,7 @@ state_nivel_agua: str = ''
 state_tipo_lavado: str = ''
 
 nivel_leds = [0, 1, 2]
+
+led_1 = Pin(16, Pin.OUT)
+led_2 = Pin(17, Pin.OUT)
+led_3 = Pin(18, Pin.OUT)

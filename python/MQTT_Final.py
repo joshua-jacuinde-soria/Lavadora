@@ -12,24 +12,23 @@ import time
 import shared_obj
 from hx711 import HX711
 
-#  Configuración de pines del peso
-DOUT_PIN_NUMBER = 20  # Número de pin del HX711 (GP14)
-SCK_PIN_NUMBER = 21   # Número de pin del reloj del HX711 (GP15)
-BUTTON_PIN_NUMBER = 22  # Número de pin del botón (GP16)
+DOUT_PIN_NUMBER = 14  # Número de pin del HX711 (GP14)
+SCK_PIN_NUMBER = 15   # Número de pin del reloj del HX711 (GP15)
 
 # Configuración del sensor HX711
 hx = HX711(d_out=DOUT_PIN_NUMBER, pd_sck=SCK_PIN_NUMBER)
 
 # Ajuste manual de las lecturas del sensor (ajustar según sea necesario)
-SENSOR_OFFSET = 0  # Compensación de offset
-SENSOR_SCALE = 1  # Factor de escala
+SENSOR_OFFSET = 0 # Compensación de offset
+SENSOR_SCALE = 2  # Factor de escala
 
 # Umbral para el nivel bajo
 UMBRAL_BAJO = 500
 
 def adjust_reading(raw_reading):
-    #Ajusta manualmente la lectura del sensor.    
-    return (raw_reading + SENSOR_OFFSET) * SENSOR_SCALE
+    # Ajusta manualmente la lectura del sensor.
+    #  return (raw_reading + SENSOR_OFFSET) * SENSOR_SCALE
+   return raw_reading
 
 def read_weight():
     #Lee el peso del sensor HX711 y lo devuelve.
@@ -174,8 +173,8 @@ def conecction_wifi()->None:
     # Configuración de la red Wi-Fi
     #SSID = 'INFINITUM6832_2.4'
     #PASSWORD = 'XnCjzCT8id'
-    SSID = '#WUAMC'
-    PASSWORD = 'wificua6'
+    SSID = 'labred'
+    PASSWORD = 'labred2017'
 
     # Conectar a Wi-Fi
     wlan = network.WLAN(network.STA_IF)

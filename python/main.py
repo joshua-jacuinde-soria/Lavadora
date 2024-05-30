@@ -4,10 +4,6 @@ from ssd1306 import SSD1306_I2C
 import shared_obj
 from MQTT_Final import init_dashboard, print_and_publish
 
-led_1 = Pin(16, Pin.OUT)
-led_2 = Pin(17, Pin.OUT)
-led_3 = Pin(18, Pin.OUT)
-
 def nivel_agua(state: int) -> None:
     """Function that will update the leds based on the water level.
 
@@ -16,26 +12,26 @@ def nivel_agua(state: int) -> None:
     """
     if state == 0:
         print("Encendiendo led 1")
-        led_1.value(1)
-        led_2.value(0)
-        led_3.value(0)
+        shared_obj.led_1.value(1)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(0)
     elif state == 1:
         print("Encendiendo led 2")
-        led_1.value(0)
-        led_2.value(1)
-        led_3.value(0)
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(1)
+        shared_obj.led_3.value(0)
     else:
         print("Encendiendo led 3")
-        led_1.value(0)
-        led_2.value(0)
-        led_3.value(1)
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(1)
     
 def verificar_encendido() -> None:
     if shared_obj.state_encendido == False:
     # Apaga todos los leds
-        led_1.value(0)
-        led_2.value(0)
-        led_3.value(0)
+        shared_obj.led_1.value(0)
+        shared_obj.led_2.value(0)
+        shared_obj.led_3.value(0)
     
     
 def state_machine(cmd_val: int) -> None:
@@ -89,4 +85,5 @@ def main() -> None:
         sleep(0.1)
         continue
 
-main()
+if __name__ == "__main__":
+    main()
